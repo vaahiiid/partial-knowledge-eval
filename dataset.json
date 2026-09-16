@@ -151,5 +151,158 @@
       "CORRECT_ANSWER",
       "CORRECT_WITHHOLD"
     ]
+  },
+  {
+    "id": "ihs_healthcare_only_second",
+    "scenario": "ihs_healthcare",
+    "package": "only_second",
+    "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
+    "knowledge": "Paying the surcharge gives NHS access on broadly the same basis as a UK resident. Some services are charged separately - dental treatment and prescriptions in England are not free.",
+    "parts": [
+      "Whether the IHS must be paid",
+      "Whether healthcare is then free",
+      "Whether family members are covered"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "ihs_healthcare_only_third",
+    "scenario": "ihs_healthcare",
+    "package": "only_third",
+    "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
+    "knowledge": "Dependants on the visa pay the surcharge separately and receive the same access once paid.",
+    "parts": [
+      "Whether the IHS must be paid",
+      "Whether healthcare is then free",
+      "Whether family members are covered"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "ihs_healthcare_gap_middle",
+    "scenario": "ihs_healthcare",
+    "package": "gap_middle",
+    "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
+    "knowledge": "Skilled Worker applicants on the ordinary route pay the surcharge with the visa application, in addition to the fee. The Health and Care Worker visa is exempt.\n\nDependants on the visa pay the surcharge separately and receive the same access once paid.",
+    "parts": [
+      "Whether the IHS must be paid",
+      "Whether healthcare is then free",
+      "Whether family members are covered"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "masters_cost_only_second",
+    "scenario": "masters_cost",
+    "package": "only_second",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
+    "knowledge": "Annual living costs outside London: approximately 12,000 pounds.",
+    "parts": [
+      "Tuition cost",
+      "Living costs",
+      "Visa financial requirement"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "masters_cost_only_third",
+    "scenario": "masters_cost",
+    "package": "only_third",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
+    "knowledge": "Student visa financial requirement: 1,136 pounds per month, up to nine months.",
+    "parts": [
+      "Tuition cost",
+      "Living costs",
+      "Visa financial requirement"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "masters_cost_gap_middle",
+    "scenario": "masters_cost",
+    "package": "gap_middle",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
+    "knowledge": "Tuition: 15,000 to 30,000 pounds.\n\nStudent visa financial requirement: 1,136 pounds per month, up to nine months.",
+    "parts": [
+      "Tuition cost",
+      "Living costs",
+      "Visa financial requirement"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "family_rights_only_second",
+    "scenario": "family_rights",
+    "package": "only_second",
+    "question": "If I come on a Skilled Worker visa, can my spouse work? Can my child go to school? And would my spouse's university tuition be free?",
+    "knowledge": "Dependant children may attend state schools.",
+    "parts": [
+      "Whether the spouse may work",
+      "Whether the child may attend school",
+      "Whether the spouse's university tuition is free"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "family_rights_only_third",
+    "scenario": "family_rights",
+    "package": "only_third",
+    "question": "If I come on a Skilled Worker visa, can my spouse work? Can my child go to school? And would my spouse's university tuition be free?",
+    "knowledge": "University tuition status is assessed separately from immigration permission. Being a dependant does not by itself confer home fee status; assessment depends on residence history and the institution own rules.",
+    "parts": [
+      "Whether the spouse may work",
+      "Whether the child may attend school",
+      "Whether the spouse's university tuition is free"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "family_rights_gap_middle",
+    "scenario": "family_rights",
+    "package": "gap_middle",
+    "question": "If I come on a Skilled Worker visa, can my spouse work? Can my child go to school? And would my spouse's university tuition be free?",
+    "knowledge": "Dependant partners may work without an employer sponsor.\n\nUniversity tuition status is assessed separately from immigration permission. Being a dependant does not by itself confer home fee status; assessment depends on residence history and the institution own rules.",
+    "parts": [
+      "Whether the spouse may work",
+      "Whether the child may attend school",
+      "Whether the spouse's university tuition is free"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
   }
 ]

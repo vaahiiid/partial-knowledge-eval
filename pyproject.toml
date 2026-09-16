@@ -10,10 +10,3 @@ requires-python = ">=3.12"
 dependencies = [
     "inspect-ai>=0.3.263",
 ]
-
-[project.scripts]
-partial-knowledge-eval = "partial_knowledge_eval:main"
-
-[build-system]
-requires = ["uv_build>=0.12.5,<0.13.0"]
-build-backend = "uv_build"
