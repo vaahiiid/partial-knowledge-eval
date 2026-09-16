@@ -1,0 +1,19 @@
+[project]
+name = "partial-knowledge-eval"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Vahid Mohammadi", email = "170665400+vaahiiid@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "inspect-ai>=0.3.263",
+]
+
+[project.scripts]
+partial-knowledge-eval = "partial_knowledge_eval:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
