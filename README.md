@@ -37,6 +37,7 @@ correctly, and scoring the wording would penalise it.
 unsupported_claim_rate    = UNSUPPORTED_CLAIM / uncovered parts
 unnecessary_withhold_rate = UNNECESSARY_WITHHOLD / covered parts
 boundary_accuracy         = (correct verdicts) / all parts
+judge_parse_failure_rate  = unparseable judge outputs / all samples
 ```
 
 The first two move in opposite directions. A system can drive
@@ -44,9 +45,14 @@ The first two move in opposite directions. A system can drive
 `unnecessary_withhold_rate` up. Reporting both is the point — a single
 score would hide the trade-off.
 
+The fourth is a health check on the eval itself rather than on the
+system under test. A parse failure scores zero, so if that rate is not
+near zero the other figures understate real performance. It is reported
+on every run precisely so that it cannot go unnoticed.
+
 ## Dataset
 
-Nine cases: three scenarios × three knowledge packages.
+Eighteen cases: three scenarios × six knowledge packages.
 
 | Scenario | Parts |
 |---|---|
@@ -54,9 +60,9 @@ Nine cases: three scenarios × three knowledge packages.
 | `masters_cost` | Tuition / living costs / visa financial requirement |
 | `family_rights` | Spouse work rights / schooling / tuition fee status |
 
-Each scenario runs with a **sparse** package (one part covered), a
-**complete** package (all parts covered) and a **partial** package (some
-covered, some not).
+Each scenario runs with six packages: each part supplied alone, all
+three together, one pair, and a **gap in the middle** — parts one and
+three supplied, part two withheld.
 
 Two design rules govern the scenarios:
 
@@ -88,39 +94,69 @@ uv run inspect eval partial_knowledge.py -T judge=anthropic/claude-sonnet-4-5-20
 
 ## Early results
 
-Preliminary, on nine cases (27 parts). Not enough for firm conclusions,
-but two patterns appear consistently:
+Preliminary, on eighteen cases (54 parts), `temperature=0`, judged by
+claude-haiku-4-5. Nine runs:
 
-| Model | boundary_accuracy | unsupported_claim | unnecessary_withhold |
-|---|---|---|---|
-| claude-haiku-4-5 | 0.733 | 0.667 | 0.000 |
-| claude-sonnet-4-5 | 0.600 | 0.833 | 0.000 |
+| Metric | Mean | Range |
+|---|---|---|
+| `boundary_accuracy` | 0.64 | 0.61 – 0.67 |
+| `unsupported_claim_rate` | 0.77 | 0.75 – 0.79 |
+| `unnecessary_withhold_rate` | 0.00 | 0.00 |
+| `judge_parse_failure_rate` | 0.00 | 0.00 |
 
-**Errors are one-directional.** Across every run, neither model withheld
-anything it had been given. Failures were entirely over-claiming. A
-single combined score would have hidden this.
+Three observations, offered as observations rather than conclusions:
 
-**Partial knowledge appears more dangerous than none.** An earlier run
+**Errors are one-directional.** `unnecessary_withhold_rate` was exactly
+zero in every run. The model never withheld anything it had been given;
+every failure was over-claiming. The other metrics vary run to run, so
+this one being immovable is notable. A single combined score would have
+hidden it.
+
+**Partial knowledge may be more dangerous than none.** An earlier run
 with no knowledge package supplied at all produced an
-`unsupported_claim_rate` of 0.250. Supplying partial context raised it
-sharply. Surrounding context seems to make gap-filling feel justified in
-a way that an empty context does not.
+`unsupported_claim_rate` of 0.25. Supplying partial context raised it
+sharply. Surrounding context appears to make gap-filling feel justified
+in a way that an empty context does not. This needs a controlled
+comparison before it can be claimed properly.
 
-Results are sensitive to package wording. Removing five words from one
-package ("with limited exceptions") shifted accuracy by six points, so
-any published figure needs to name the dataset version it came from.
+**A stronger model did worse.** In a single comparison on the earlier
+nine-case dataset, claude-sonnet-4-5 scored lower than
+claude-haiku-4-5 (0.600 vs 0.733 accuracy; 0.833 vs 0.667 unsupported
+claims). One comparison on a small dataset is not evidence, but it is
+the opposite of the expected direction and worth testing properly.
+
+### Results are sensitive to small changes
+
+Two things shifted the numbers materially during development, both worth
+knowing about before treating any figure as stable:
+
+Removing five words from one knowledge package ("with limited
+exceptions") moved accuracy by six points. The phrase referred to
+exceptions the package did not contain, leaving the judge nothing to
+score against.
+
+Fixing the parser moved `unsupported_claim_rate` from ~0.82 to ~0.77.
+The judge was writing its verdicts in prose rather than the requested
+tags in roughly 40% of runs; those runs scored zero, which understated
+real performance. Part of what looked like model behaviour was a
+measurement artefact.
+
+Any published figure should name the dataset version and judge model it
+came from.
 
 ## Status
 
-Early. Nine cases is a proof of concept, not a benchmark. The dataset
-needs to grow substantially before the differences above can be treated
-as real rather than noise.
+Early. Eighteen cases is a proof of concept, not a benchmark. The
+dataset needs to grow substantially, and across more domains, before the
+differences above can be treated as real rather than noise.
 
 Known gaps:
 
-- Dataset too small for the model comparison to be meaningful
-- Judge reliability not yet measured against human labels
-- Parser has no fallback if the judge breaks format
+- Dataset too small, and covers only two domains (UK immigration and
+  international education)
+- Judge agreement with human labels not yet measured
+- Judge verdicts are not fully stable: on a fixed input, one part of
+  three changed verdict in one run out of ten
 - Only tested with Anthropic models
 
 ## Licence
