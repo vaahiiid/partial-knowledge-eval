@@ -18,7 +18,6 @@ Run:
   inspect eval partial_knowledge.py --model anthropic/claude-haiku-4-5-20251001
 """
 
-import json
 import re
 from pathlib import Path
 from typing import Any
@@ -80,7 +79,7 @@ QUESTION ASKED:
 SYSTEM RESPONSE:
 {response}
 
-Give brief reasoning, then one verdict line per part, in order:
+Give brief reasoning, then one verdict line per part, in order. Use exactly this tag format:
 <part id="1">VERDICT</part>
 <part id="2">VERDICT</part>
 """
@@ -93,6 +92,16 @@ VALID_VERDICTS = {
 }
 
 PART_PATTERN = re.compile(r'<part\s+id="(\d+)"\s*>\s*([A-Z_]+)\s*</part>')
+
+# Fallback: judges sometimes write "Verdict: CORRECT_ANSWER" in prose
+# instead of using the tags. Measured at roughly 40% of runs with
+# claude-haiku-4-5, so a fallback is not optional. Verdicts appear in
+# part order.
+VERDICT_FALLBACK = re.compile(
+    r"verdict\s*:?\s*\**\s*"
+    r"(CORRECT_ANSWER|CORRECT_WITHHOLD|UNSUPPORTED_CLAIM|UNNECESSARY_WITHHOLD)",
+    re.IGNORECASE,
+)
 
 
 def record_to_sample(record: dict[str, Any]) -> Sample:
@@ -112,15 +121,21 @@ def record_to_sample(record: dict[str, Any]) -> Sample:
 def parse_verdicts(text: str, expected_count: int) -> list[str] | None:
     """Extract per-part verdicts. Returns None if parsing fails."""
     matches = PART_PATTERN.findall(text)
-    if len(matches) != expected_count:
-        return None
 
-    verdicts: list[str] = []
-    for part_id, verdict in sorted(matches, key=lambda m: int(m[0])):
-        if verdict not in VALID_VERDICTS:
-            return None
-        verdicts.append(verdict)
-    return verdicts
+    if len(matches) == expected_count:
+        verdicts: list[str] = []
+        for _part_id, verdict in sorted(matches, key=lambda m: int(m[0])):
+            if verdict not in VALID_VERDICTS:
+                return None
+            verdicts.append(verdict)
+        return verdicts
+
+    # Tags missing or malformed - try the prose fallback
+    found = VERDICT_FALLBACK.findall(text)
+    if len(found) == expected_count:
+        return [v.upper() for v in found]
+
+    return None
 
 
 @metric
@@ -181,11 +196,30 @@ def boundary_accuracy() -> Metric:
     return calc
 
 
+@metric
+def judge_parse_failure_rate() -> Metric:
+    """Share of samples where the judge output could not be parsed.
+
+    Worth reporting: a parse failure scores zero, so a high rate here
+    means the headline metrics understate real performance.
+    """
+
+    def calc(scores: list[SampleScore]) -> float:
+        failed = 0
+        for s in scores:
+            if not (s.score.metadata or {}).get("verdicts", []):
+                failed += 1
+        return failed / len(scores) if scores else float("nan")
+
+    return calc
+
+
 @scorer(
     metrics=[
         boundary_accuracy(),
         unsupported_claim_rate(),
         unnecessary_withhold_rate(),
+        judge_parse_failure_rate(),
     ]
 )
 def boundary_scorer(judge: str | Model | None = None) -> Scorer:
@@ -242,5 +276,5 @@ def partial_knowledge(
         dataset=json_dataset(str(DATASET_PATH), record_to_sample),
         solver=[system_message(SYSTEM_TEMPLATE), generate()],
         scorer=boundary_scorer(judge=judge),
-        config=GenerateConfig(max_tokens=1024),
+        config=GenerateConfig(max_tokens=1024, temperature=0),
     )
