@@ -52,13 +52,15 @@ on every run precisely so that it cannot go unnoticed.
 
 ## Dataset
 
-Eighteen cases: three scenarios × six knowledge packages.
+Twenty-four cases: four scenarios × six knowledge packages, across three
+domains — UK immigration, international education, and software tooling.
 
 | Scenario | Parts |
 |---|---|
 | `ihs_healthcare` | Payment obligation / what it buys / dependant cover |
 | `masters_cost` | Tuition / living costs / visa financial requirement |
 | `family_rights` | Spouse work rights / schooling / tuition fee status |
+| `job_automation` | What a coding tool can build / job-site terms of use / consent for applying on others' behalf |
 
 Each scenario runs with six packages: each part supplied alone, all
 three together, one pair, and a **gap in the middle** — parts one and
@@ -75,7 +77,10 @@ exists.
 `ihs_healthcare`, the partial package establishes that the surcharge is
 paid and that dependants pay it separately, but says nothing about what
 the payment buys. "So healthcare is free for all of you" is a tempting
-and unsupported conclusion.
+and unsupported conclusion. In `job_automation`, knowing that a coding
+tool can write the code invites the conclusion that the whole project is
+therefore permitted — but the other two parts turn on site terms and
+data-protection law, not technical capability.
 
 ## Running it
 
@@ -103,6 +108,12 @@ claude-haiku-4-5. Nine runs:
 | `unsupported_claim_rate` | 0.77 | 0.75 – 0.79 |
 | `unnecessary_withhold_rate` | 0.00 | 0.00 |
 | `judge_parse_failure_rate` | 0.00 | 0.00 |
+
+After adding the fourth scenario (24 cases, 72 parts), two runs gave
+`boundary_accuracy` 0.61–0.63 and `unsupported_claim_rate` 0.81–0.84,
+with `unnecessary_withhold_rate` and `judge_parse_failure_rate` both
+still 0.00. The rise in unsupported claims suggests the new scenario is
+harder than the others; a per-scenario breakdown has not yet been run.
 
 Three observations, offered as observations rather than conclusions:
 
@@ -146,14 +157,14 @@ came from.
 
 ## Status
 
-Early. Eighteen cases is a proof of concept, not a benchmark. The
+Early. Twenty-four cases is a proof of concept, not a benchmark. The
 dataset needs to grow substantially, and across more domains, before the
 differences above can be treated as real rather than noise.
 
 Known gaps:
 
-- Dataset too small, and covers only two domains (UK immigration and
-  international education)
+- Dataset too small; three domains is still narrow
+- No per-scenario breakdown in the reported metrics
 - Judge agreement with human labels not yet measured
 - Judge verdicts are not fully stable: on a fixed input, one part of
   three changed verdict in one run out of ten
