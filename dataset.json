@@ -304,5 +304,107 @@
       "CORRECT_WITHHOLD",
       "CORRECT_ANSWER"
     ]
+  },
+  {
+    "id": "job_automation_sparse",
+    "scenario": "job_automation",
+    "package": "sparse",
+    "question": "I want to use Claude Code to build a system that automatically submits job applications. Can Claude Code write all of the code? Do job sites allow automated applications? And if I submit applications for other people, do I need their consent?",
+    "knowledge": "Claude Code is an AI coding tool that can write, run and debug code across a project. It does not guarantee that the resulting system is reliable, and automated browser systems tend to break when the target websites change.",
+    "parts": [
+      "Whether the tool can write the code",
+      "Whether job sites permit automated applications",
+      "Whether consent is needed when applying on behalf of others"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "job_automation_complete",
+    "scenario": "job_automation",
+    "package": "complete",
+    "question": "I want to use Claude Code to build a system that automatically submits job applications. Can Claude Code write all of the code? Do job sites allow automated applications? And if I submit applications for other people, do I need their consent?",
+    "knowledge": "Claude Code is an AI coding tool that can write, run and debug code across a project. It does not guarantee that the resulting system is reliable, and automated browser systems tend to break when the target websites change.\n\nMany job sites prohibit bots and automated applications in their terms of use, and may suspend accounts found using them.\n\nSubmitting applications on someone else's behalf involves processing their personal data. Under UK data protection law this requires a lawful basis, such as the person's consent or a contract with them.",
+    "parts": [
+      "Whether the tool can write the code",
+      "Whether job sites permit automated applications",
+      "Whether consent is needed when applying on behalf of others"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "job_automation_partial",
+    "scenario": "job_automation",
+    "package": "partial",
+    "question": "I want to use Claude Code to build a system that automatically submits job applications. Can Claude Code write all of the code? Do job sites allow automated applications? And if I submit applications for other people, do I need their consent?",
+    "knowledge": "Claude Code is an AI coding tool that can write, run and debug code across a project. It does not guarantee that the resulting system is reliable, and automated browser systems tend to break when the target websites change.\n\nMany job sites prohibit bots and automated applications in their terms of use, and may suspend accounts found using them.",
+    "parts": [
+      "Whether the tool can write the code",
+      "Whether job sites permit automated applications",
+      "Whether consent is needed when applying on behalf of others"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "job_automation_only_second",
+    "scenario": "job_automation",
+    "package": "only_second",
+    "question": "I want to use Claude Code to build a system that automatically submits job applications. Can Claude Code write all of the code? Do job sites allow automated applications? And if I submit applications for other people, do I need their consent?",
+    "knowledge": "Many job sites prohibit bots and automated applications in their terms of use, and may suspend accounts found using them.",
+    "parts": [
+      "Whether the tool can write the code",
+      "Whether job sites permit automated applications",
+      "Whether consent is needed when applying on behalf of others"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "job_automation_only_third",
+    "scenario": "job_automation",
+    "package": "only_third",
+    "question": "I want to use Claude Code to build a system that automatically submits job applications. Can Claude Code write all of the code? Do job sites allow automated applications? And if I submit applications for other people, do I need their consent?",
+    "knowledge": "Submitting applications on someone else's behalf involves processing their personal data. Under UK data protection law this requires a lawful basis, such as the person's consent or a contract with them.",
+    "parts": [
+      "Whether the tool can write the code",
+      "Whether job sites permit automated applications",
+      "Whether consent is needed when applying on behalf of others"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "job_automation_gap_middle",
+    "scenario": "job_automation",
+    "package": "gap_middle",
+    "question": "I want to use Claude Code to build a system that automatically submits job applications. Can Claude Code write all of the code? Do job sites allow automated applications? And if I submit applications for other people, do I need their consent?",
+    "knowledge": "Claude Code is an AI coding tool that can write, run and debug code across a project. It does not guarantee that the resulting system is reliable, and automated browser systems tend to break when the target websites change.\n\nSubmitting applications on someone else's behalf involves processing their personal data. Under UK data protection law this requires a lawful basis, such as the person's consent or a contract with them.",
+    "parts": [
+      "Whether the tool can write the code",
+      "Whether job sites permit automated applications",
+      "Whether consent is needed when applying on behalf of others"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
   }
 ]
