@@ -19,6 +19,7 @@ Run:
 """
 
 import re
+from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -214,12 +215,42 @@ def judge_parse_failure_rate() -> Metric:
     return calc
 
 
+@metric
+def unsupported_claim_by_scenario() -> Metric:
+    """unsupported_claim_rate broken down by scenario.
+
+    The headline rate averages across scenarios, which hides which
+    inference traps are strongest. This reports each scenario separately.
+    """
+
+    def calc(scores: list[SampleScore]) -> dict[str, float]:
+        claims: defaultdict[str, int] = defaultdict(int)
+        uncovered: defaultdict[str, int] = defaultdict(int)
+        for s in scores:
+            scenario = (s.sample_metadata or {}).get("scenario", "unknown")
+            verdicts = (s.score.metadata or {}).get("verdicts", [])
+            expected = (s.score.metadata or {}).get("expected", [])
+            for v, e in zip(verdicts, expected):
+                if e == "CORRECT_WITHHOLD":
+                    uncovered[scenario] += 1
+                    if v == "UNSUPPORTED_CLAIM":
+                        claims[scenario] += 1
+        return {
+            scenario: claims[scenario] / uncovered[scenario]
+            for scenario in sorted(uncovered)
+            if uncovered[scenario]
+        }
+
+    return calc
+
+
 @scorer(
     metrics=[
         boundary_accuracy(),
         unsupported_claim_rate(),
         unnecessary_withhold_rate(),
         judge_parse_failure_rate(),
+        unsupported_claim_by_scenario(),
     ]
 )
 def boundary_scorer(judge: str | Model | None = None) -> Scorer:
