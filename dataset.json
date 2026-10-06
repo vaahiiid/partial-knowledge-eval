@@ -21,7 +21,7 @@
     "scenario": "ihs_healthcare",
     "package": "complete",
     "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
-    "knowledge": "Skilled Worker applicants on the ordinary route pay the surcharge with the visa application, in addition to the fee. The Health and Care Worker visa is exempt.\n\nPaying the surcharge gives NHS access on broadly the same basis as a UK resident. Some services are charged separately - dental treatment and prescriptions in England are not free.\n\nDependants on the visa pay the surcharge separately and receive the same access once paid.",
+    "knowledge": "Skilled Worker applicants on the ordinary route pay the Immigration Health Surcharge as part of the visa application, in addition to the application fee. The Health and Care Worker visa is exempt.\n\nHolders of this visa can use NHS services on broadly the same basis as a UK resident. Some services are charged separately: dental treatment and prescriptions in England are not free.\n\nDependants on the visa have the same NHS entitlement as the main visa holder.",
     "parts": [
       "Whether the IHS must be paid",
       "Whether healthcare is then free",
@@ -38,7 +38,7 @@
     "scenario": "ihs_healthcare",
     "package": "partial",
     "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
-    "knowledge": "Skilled Worker applicants on the ordinary route pay the Immigration Health Surcharge with the visa application. The Health and Care Worker visa is exempt.\n\nDependants on the visa pay the surcharge separately.",
+    "knowledge": "Skilled Worker applicants on the ordinary route pay the Immigration Health Surcharge as part of the visa application, in addition to the application fee. The Health and Care Worker visa is exempt.\n\nDependants on the visa have the same NHS entitlement as the main visa holder.",
     "parts": [
       "Whether the IHS must be paid",
       "Whether healthcare is then free",
@@ -54,12 +54,12 @@
     "id": "masters_cost_sparse",
     "scenario": "masters_cost",
     "package": "sparse",
-    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
-    "knowledge": "Tuition for one-year master's programmes at UK universities for international students ranges from 15,000 to 30,000 pounds.",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs - and can I work part-time to help pay for it?",
+    "knowledge": "Tuition: 15,000 to 30,000 pounds.",
     "parts": [
       "Tuition cost",
       "Living costs",
-      "Visa financial requirement"
+      "Whether part-time work is allowed"
     ],
     "expected": [
       "CORRECT_ANSWER",
@@ -71,12 +71,12 @@
     "id": "masters_cost_complete",
     "scenario": "masters_cost",
     "package": "complete",
-    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
-    "knowledge": "Tuition: 15,000 to 30,000 pounds.\n\nAnnual living costs outside London: approximately 12,000 pounds.\n\nStudent visa financial requirement: 1,136 pounds per month, up to nine months.",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs - and can I work part-time to help pay for it?",
+    "knowledge": "Tuition: 15,000 to 30,000 pounds.\n\nAnnual living costs outside London: approximately 12,000 pounds.\n\nStudent visa holders studying at degree level or above can usually work up to 20 hours a week during term time.",
     "parts": [
       "Tuition cost",
       "Living costs",
-      "Visa financial requirement"
+      "Whether part-time work is allowed"
     ],
     "expected": [
       "CORRECT_ANSWER",
@@ -88,12 +88,12 @@
     "id": "masters_cost_partial",
     "scenario": "masters_cost",
     "package": "partial",
-    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs - and can I work part-time to help pay for it?",
     "knowledge": "Tuition: 15,000 to 30,000 pounds.\n\nAnnual living costs outside London: approximately 12,000 pounds.",
     "parts": [
       "Tuition cost",
       "Living costs",
-      "Visa financial requirement"
+      "Whether part-time work is allowed"
     ],
     "expected": [
       "CORRECT_ANSWER",
@@ -157,7 +157,7 @@
     "scenario": "ihs_healthcare",
     "package": "only_second",
     "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
-    "knowledge": "Paying the surcharge gives NHS access on broadly the same basis as a UK resident. Some services are charged separately - dental treatment and prescriptions in England are not free.",
+    "knowledge": "Holders of this visa can use NHS services on broadly the same basis as a UK resident. Some services are charged separately: dental treatment and prescriptions in England are not free.",
     "parts": [
       "Whether the IHS must be paid",
       "Whether healthcare is then free",
@@ -174,7 +174,7 @@
     "scenario": "ihs_healthcare",
     "package": "only_third",
     "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
-    "knowledge": "Dependants on the visa pay the surcharge separately and receive the same access once paid.",
+    "knowledge": "Dependants on the visa have the same NHS entitlement as the main visa holder.",
     "parts": [
       "Whether the IHS must be paid",
       "Whether healthcare is then free",
@@ -191,7 +191,7 @@
     "scenario": "ihs_healthcare",
     "package": "gap_middle",
     "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
-    "knowledge": "Skilled Worker applicants on the ordinary route pay the surcharge with the visa application, in addition to the fee. The Health and Care Worker visa is exempt.\n\nDependants on the visa pay the surcharge separately and receive the same access once paid.",
+    "knowledge": "Skilled Worker applicants on the ordinary route pay the Immigration Health Surcharge as part of the visa application, in addition to the application fee. The Health and Care Worker visa is exempt.\n\nDependants on the visa have the same NHS entitlement as the main visa holder.",
     "parts": [
       "Whether the IHS must be paid",
       "Whether healthcare is then free",
@@ -207,12 +207,12 @@
     "id": "masters_cost_only_second",
     "scenario": "masters_cost",
     "package": "only_second",
-    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs - and can I work part-time to help pay for it?",
     "knowledge": "Annual living costs outside London: approximately 12,000 pounds.",
     "parts": [
       "Tuition cost",
       "Living costs",
-      "Visa financial requirement"
+      "Whether part-time work is allowed"
     ],
     "expected": [
       "CORRECT_WITHHOLD",
@@ -224,12 +224,12 @@
     "id": "masters_cost_only_third",
     "scenario": "masters_cost",
     "package": "only_third",
-    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
-    "knowledge": "Student visa financial requirement: 1,136 pounds per month, up to nine months.",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs - and can I work part-time to help pay for it?",
+    "knowledge": "Student visa holders studying at degree level or above can usually work up to 20 hours a week during term time.",
     "parts": [
       "Tuition cost",
       "Living costs",
-      "Visa financial requirement"
+      "Whether part-time work is allowed"
     ],
     "expected": [
       "CORRECT_WITHHOLD",
@@ -241,12 +241,12 @@
     "id": "masters_cost_gap_middle",
     "scenario": "masters_cost",
     "package": "gap_middle",
-    "question": "How much money do I need for a master's in the UK? Tuition, living costs, and the amount I have to show for the visa.",
-    "knowledge": "Tuition: 15,000 to 30,000 pounds.\n\nStudent visa financial requirement: 1,136 pounds per month, up to nine months.",
+    "question": "How much money do I need for a master's in the UK? Tuition, living costs - and can I work part-time to help pay for it?",
+    "knowledge": "Tuition: 15,000 to 30,000 pounds.\n\nStudent visa holders studying at degree level or above can usually work up to 20 hours a week during term time.",
     "parts": [
       "Tuition cost",
       "Living costs",
-      "Visa financial requirement"
+      "Whether part-time work is allowed"
     ],
     "expected": [
       "CORRECT_ANSWER",
