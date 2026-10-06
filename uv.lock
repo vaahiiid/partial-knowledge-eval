@@ -1193,7 +1193,7 @@ wheels = [
 [[package]]
 name = "partial-knowledge-eval"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "inspect-ai" },
 ]

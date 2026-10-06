@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Any
 
 from inspect_ai import Task, task
-from inspect_ai.dataset import Sample, json_dataset
+from inspect_ai.dataset import MemoryDataset, Sample, json_dataset
 from inspect_ai.model import GenerateConfig, Model, get_model
 from inspect_ai.scorer import (
     Metric,
@@ -294,18 +294,40 @@ def boundary_scorer(judge: str | Model | None = None) -> Scorer:
     return score
 
 
+def repeated(dataset, repeats: int) -> MemoryDataset:
+    """Each case `repeats` times, ids suffixed __1, __2 ...
+
+    Used instead of epochs so every repeat keeps its own per-part
+    verdicts, which the metrics and analysis scripts read.
+    """
+    samples = [
+        s.model_copy(update={"id": f"{s.id}__{k}"})
+        for s in dataset
+        for k in range(1, repeats + 1)
+    ]
+    return MemoryDataset(samples)
+
+
 @task
 def partial_knowledge(
     judge: str | None = "anthropic/claude-haiku-4-5-20251001",
+    repeats: int = 1,
 ) -> Task:
     """Partial-knowledge disclosure evaluation.
 
     Args:
         judge: model used to classify how each part was handled
+        repeats: samples per case. Runs at the default temperature, so
+            repeats estimate a real rate. temperature=0 was tried and
+            dropped: runs within a day agreed, but the dominant answer
+            shifted between days, so agreement was not stability.
     """
+    dataset = json_dataset(str(DATASET_PATH), record_to_sample)
+    if repeats > 1:
+        dataset = repeated(dataset, repeats)
     return Task(
-        dataset=json_dataset(str(DATASET_PATH), record_to_sample),
+        dataset=dataset,
         solver=[system_message(SYSTEM_TEMPLATE), generate()],
         scorer=boundary_scorer(judge=judge),
-        config=GenerateConfig(max_tokens=1024, temperature=0),
+        config=GenerateConfig(max_tokens=1024),
     )
