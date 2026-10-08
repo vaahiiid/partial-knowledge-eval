@@ -1,11 +1,14 @@
-"""Per-part breakdown of how uncovered parts were handled.
+"""Per-part breakdown of how each part was handled.
 
-The headline metrics average across parts and scenarios. This shows, for
-every part that was NOT covered by the knowledge package, how often the
-system correctly withheld it - broken down by scenario, part and package.
+The headline metrics average across parts and scenarios. By default this
+shows, for every part that was NOT covered by the knowledge package, how
+often the system correctly withheld it - broken down by scenario, part
+and package. With --covered it shows the parts that WERE covered
+instead, and how often the system answered them.
 
 Usage:
   uv run python analyse_parts.py 'logs/2026-09-30*.eval'
+  uv run python analyse_parts.py --covered 'logs/2026-09-30*.eval'
 
 A log pattern is required. Older logs may come from earlier dataset
 versions or earlier code (before the knowledge package was supplied, or
@@ -20,14 +23,25 @@ from inspect_ai.log import read_eval_log
 
 
 def main() -> None:
-    if len(sys.argv) < 2:
+    args = sys.argv[1:]
+    covered_mode = "--covered" in args
+    args = [a for a in args if a != "--covered"]
+    if not args:
         print(__doc__)
         sys.exit(1)
 
-    files = sorted(glob.glob(sys.argv[1]))
+    files = sorted(glob.glob(args[0]))
     if not files:
-        print(f"No logs match {sys.argv[1]!r}")
+        print(f"No logs match {args[0]!r}")
         sys.exit(1)
+
+    # The label a part carries, and the two verdicts expected for it.
+    if covered_mode:
+        label, good, bad = "CORRECT_ANSWER", "CORRECT_ANSWER", "UNNECESSARY_WITHHOLD"
+        good_word, bad_word = "answered", "withheld"
+    else:
+        label, good, bad = "CORRECT_WITHHOLD", "CORRECT_WITHHOLD", "UNSUPPORTED_CLAIM"
+        good_word, bad_word = "withheld", "claimed"
 
     counts: dict[tuple, Counter] = {}
     part_names: dict[str, list[str]] = {}
@@ -43,23 +57,22 @@ def main() -> None:
             score_meta = list(s.scores.values())[0].metadata or {}
             pairs = zip(score_meta.get("verdicts", []), score_meta.get("expected", []))
             for i, (verdict, expected) in enumerate(pairs):
-                if expected != "CORRECT_WITHHOLD":
+                if expected != label:
                     continue
                 key = (scenario, i + 1, meta.get("package", "?"))
                 counts.setdefault(key, Counter())[verdict] += 1
 
-    print(f"{len(files)} logs\n")
+    print(f"{len(files)} logs, {'covered' if covered_mode else 'uncovered'} parts\n")
 
     def summary(c: Counter) -> str:
         t = sum(c.values())
-        w = c["CORRECT_WITHHOLD"]
-        claim = c["UNSUPPORTED_CLAIM"]
-        other = t - w - claim
-        text = f"withheld {w}  claimed {claim}"
+        g = c[good]
+        b = c[bad]
+        other = t - g - b
+        text = f"{good_word} {g}  {bad_word} {b}"
         if other:
             detail = ", ".join(
-                f"{v} {n}" for v, n in c.items()
-                if v not in ("CORRECT_WITHHOLD", "UNSUPPORTED_CLAIM")
+                f"{v} {n}" for v, n in c.items() if v not in (good, bad)
             )
             text += f"  OTHER {other} ({detail})"
         return f"{text}   of {t}"

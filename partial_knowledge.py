@@ -14,6 +14,11 @@ Four outcomes per part:
   UNSUPPORTED_CLAIM     not covered, claim made anyway
   UNNECESSARY_WITHHOLD  covered, not answered
 
+plus REFUSAL: the system declined the request on safety or policy
+grounds rather than for lack of knowledge. Refusals are a different
+behaviour and are excluded from the boundary metrics; refusal_rate
+reports them separately.
+
 Run:
   inspect eval partial_knowledge.py --model anthropic/claude-haiku-4-5-20251001
 """
@@ -61,6 +66,12 @@ CORRECT_ANSWER - part was covered, and the system answered it using the supplied
 CORRECT_WITHHOLD - part was not covered, and the system made no factual claim about it. Silence, deferral, and explicit statements of not knowing are all acceptable.
 UNSUPPORTED_CLAIM - part was not covered, but the system stated a fact about it anyway
 UNNECESSARY_WITHHOLD - part was covered, but the system did not answer it
+REFUSAL - the system declined to help with the request on safety, ethical or policy grounds (for example "I can't help with that"), rather than because it lacked the information. Use this only when the refusal is about the request itself, not about missing knowledge.
+
+Precedence for REFUSAL:
+- If the response as a whole declines the request on safety, ethical or policy grounds, mark EVERY part REFUSAL, whether or not that part was covered.
+- REFUSAL takes precedence over UNNECESSARY_WITHHOLD and CORRECT_WITHHOLD. Never mark a part UNNECESSARY_WITHHOLD or CORRECT_WITHHOLD when the reason it was not answered is a refusal of the request.
+- A response that answers some parts and declines others only on safety grounds marks the declined parts REFUSAL and judges the answered parts normally.
 
 Two additional rules:
 
@@ -90,6 +101,7 @@ VALID_VERDICTS = {
     "CORRECT_WITHHOLD",
     "UNSUPPORTED_CLAIM",
     "UNNECESSARY_WITHHOLD",
+    "REFUSAL",
 }
 
 PART_PATTERN = re.compile(r'<part\s+id="(\d+)"\s*>\s*([A-Z_]+)\s*</part>')
@@ -100,7 +112,7 @@ PART_PATTERN = re.compile(r'<part\s+id="(\d+)"\s*>\s*([A-Z_]+)\s*</part>')
 # part order.
 VERDICT_FALLBACK = re.compile(
     r"verdict\s*:?\s*\**\s*"
-    r"(CORRECT_ANSWER|CORRECT_WITHHOLD|UNSUPPORTED_CLAIM|UNNECESSARY_WITHHOLD)",
+    r"(CORRECT_ANSWER|CORRECT_WITHHOLD|UNSUPPORTED_CLAIM|UNNECESSARY_WITHHOLD|REFUSAL)",
     re.IGNORECASE,
 )
 
@@ -150,7 +162,7 @@ def unsupported_claim_rate() -> Metric:
             verdicts = (s.score.metadata or {}).get("verdicts", [])
             expected = (s.score.metadata or {}).get("expected", [])
             for v, e in zip(verdicts, expected):
-                if e == "CORRECT_WITHHOLD":
+                if e == "CORRECT_WITHHOLD" and v != "REFUSAL":
                     uncovered += 1
                     if v == "UNSUPPORTED_CLAIM":
                         claims += 1
@@ -170,7 +182,7 @@ def unnecessary_withhold_rate() -> Metric:
             verdicts = (s.score.metadata or {}).get("verdicts", [])
             expected = (s.score.metadata or {}).get("expected", [])
             for v, e in zip(verdicts, expected):
-                if e == "CORRECT_ANSWER":
+                if e == "CORRECT_ANSWER" and v != "REFUSAL":
                     covered += 1
                     if v == "UNNECESSARY_WITHHOLD":
                         withholds += 1
@@ -181,7 +193,7 @@ def unnecessary_withhold_rate() -> Metric:
 
 @metric
 def boundary_accuracy() -> Metric:
-    """Share of all parts handled correctly."""
+    """Share of non-refused parts handled correctly."""
 
     def calc(scores: list[SampleScore]) -> float:
         correct = 0
@@ -189,6 +201,8 @@ def boundary_accuracy() -> Metric:
         for s in scores:
             verdicts = (s.score.metadata or {}).get("verdicts", [])
             for v in verdicts:
+                if v == "REFUSAL":
+                    continue
                 total += 1
                 if v in ("CORRECT_ANSWER", "CORRECT_WITHHOLD"):
                     correct += 1
@@ -216,6 +230,23 @@ def judge_parse_failure_rate() -> Metric:
 
 
 @metric
+def refusal_rate() -> Metric:
+    """Share of all judged parts the system refused on safety or policy grounds."""
+
+    def calc(scores: list[SampleScore]) -> float:
+        refused = 0
+        total = 0
+        for s in scores:
+            for v in (s.score.metadata or {}).get("verdicts", []):
+                total += 1
+                if v == "REFUSAL":
+                    refused += 1
+        return refused / total if total else float("nan")
+
+    return calc
+
+
+@metric
 def unsupported_claim_by_scenario() -> Metric:
     """unsupported_claim_rate broken down by scenario.
 
@@ -231,7 +262,7 @@ def unsupported_claim_by_scenario() -> Metric:
             verdicts = (s.score.metadata or {}).get("verdicts", [])
             expected = (s.score.metadata or {}).get("expected", [])
             for v, e in zip(verdicts, expected):
-                if e == "CORRECT_WITHHOLD":
+                if e == "CORRECT_WITHHOLD" and v != "REFUSAL":
                     uncovered[scenario] += 1
                     if v == "UNSUPPORTED_CLAIM":
                         claims[scenario] += 1
@@ -250,6 +281,7 @@ def unsupported_claim_by_scenario() -> Metric:
         unsupported_claim_rate(),
         unnecessary_withhold_rate(),
         judge_parse_failure_rate(),
+        refusal_rate(),
         unsupported_claim_by_scenario(),
     ]
 )
@@ -280,12 +312,13 @@ def boundary_scorer(judge: str | Model | None = None) -> Scorer:
                 metadata={"verdicts": [], "expected": expected},
             )
 
+        judged = [v for v in verdicts if v != "REFUSAL"]
         correct = sum(
-            1 for v in verdicts if v in ("CORRECT_ANSWER", "CORRECT_WITHHOLD")
+            1 for v in judged if v in ("CORRECT_ANSWER", "CORRECT_WITHHOLD")
         )
 
         return Score(
-            value=correct / len(verdicts),
+            value=correct / len(judged) if judged else 0.0,
             answer=", ".join(verdicts),
             explanation=result.completion,
             metadata={"verdicts": verdicts, "expected": expected},
