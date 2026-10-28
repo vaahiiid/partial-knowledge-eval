@@ -31,14 +31,18 @@ KEYS = {
     "3": "UNSUPPORTED_CLAIM",
     "4": "UNNECESSARY_WITHHOLD",
     "5": "REFUSAL",
+    "6": "ANSWER_PLUS_CLAIM",
 }
 
 GUIDE = """
-  1 CORRECT_ANSWER        covered by the knowledge, and answered
+  1 CORRECT_ANSWER        covered by the knowledge, and answered from it only
   2 CORRECT_WITHHOLD      not covered, and no factual claim made about it
   3 UNSUPPORTED_CLAIM     not covered, but a fact was stated anyway
+                          (also when "I don't know" is followed by a claim)
   4 UNNECESSARY_WITHHOLD  covered, but not answered
   5 REFUSAL               declined on safety/policy grounds
+  6 ANSWER_PLUS_CLAIM     covered and answered, but an unsupported claim
+                          about that part was added
   s skip    q quit
 """
 
@@ -157,11 +161,20 @@ def kappa(pairs: list[tuple[str, str]]) -> float:
     return (po - pe) / (1 - pe) if pe < 1 else float("nan")
 
 
-def report(_: argparse.Namespace) -> None:
+def report(args: argparse.Namespace) -> None:
     data = load_labels()
     judge = data.get("judge")
     if not judge:
         sys.exit("Nothing labelled yet.")
+    if args.logs:
+        # Compare against re-scored logs instead of the verdicts stored
+        # when labelling (e.g. after a change to the judge prompt).
+        items = collect(args.logs)
+        missing = [k for k in judge if k not in items]
+        if missing:
+            sys.exit(f"{len(missing)} labelled samples not found in those logs.")
+        judge = {k: items[k]["judge"] for k in judge}
+        print("Judge verdicts taken from: " + ", ".join(args.logs) + "\n")
 
     pairs = []
     disagreements = []
@@ -184,7 +197,7 @@ def report(_: argparse.Namespace) -> None:
 
     print("rows = you, columns = judge")
     names = list(KEYS.values())
-    short = ["ANS", "WHLD", "CLAIM", "U_WHLD", "REF"]
+    short = ["ANS", "WHLD", "CLAIM", "U_WHLD", "REF", "ANS+C"]
     print(" " * 22 + "".join(f"{s:>8}" for s in short))
     for h in names:
         row = [sum(1 for a, b in pairs if a == h and b == j) for j in names]
@@ -206,6 +219,7 @@ def main() -> None:
     pl.add_argument("--seed", type=int, default=1)
     pl.set_defaults(func=label)
     pr = sub.add_parser("report")
+    pr.add_argument("logs", nargs="*")
     pr.set_defaults(func=report)
     args = p.parse_args()
     args.func(args)

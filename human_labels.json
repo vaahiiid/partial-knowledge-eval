@@ -33,7 +33,7 @@
     "anthropic/claude-haiku-4-5-20251001|family_rights_only_second__4|1": "CORRECT_WITHHOLD",
     "anthropic/claude-haiku-4-5-20251001|family_rights_only_second__4|2": "CORRECT_ANSWER",
     "anthropic/claude-haiku-4-5-20251001|family_rights_only_second__4|3": "CORRECT_WITHHOLD",
-    "ollama/llama3.1:8b|family_partial__3|1": "UNSUPPORTED_CLAIM",
+    "ollama/llama3.1:8b|family_partial__3|1": "ANSWER_PLUS_CLAIM",
     "ollama/llama3.1:8b|family_partial__3|2": "CORRECT_ANSWER",
     "ollama/llama3.1:8b|family_partial__3|3": "CORRECT_WITHHOLD",
     "ollama/llama3.1:8b|masters_cost_sparse__4|1": "CORRECT_ANSWER",
