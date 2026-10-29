@@ -10,6 +10,12 @@ Label (resumable - quit any time with q, run again to continue):
 Report:
   uv run python human_check.py report
 
+A second labelling round, kept in its own file and never re-picking
+samples labelled before:
+  uv run python human_check.py label --labels human_labels_v2.json \
+      --exclude human_labels.json --seed 11 logs/A.eval logs/B.eval
+  uv run python human_check.py report --labels human_labels_v2.json
+
 Labels are saved to human_labels.json next to this script.
 """
 
@@ -101,7 +107,10 @@ def label(args: argparse.Namespace) -> None:
 
     if not data["picked"]:
         rng = random.Random(args.seed)
-        keys = sorted(items)
+        seen: set[str] = set()
+        for path in args.exclude or []:
+            seen.update(json.loads(Path(path).read_text()).get("picked", []))
+        keys = sorted(k for k in items if k not in seen)
         data["picked"] = rng.sample(keys, min(args.n, len(keys)))
     # Keep the judge verdicts with the labels so the report needs no logs.
     data["judge"] = {k: items[k]["judge"] for k in data["picked"]}
@@ -217,11 +226,19 @@ def main() -> None:
     pl.add_argument("logs", nargs="+")
     pl.add_argument("--n", type=int, default=10)
     pl.add_argument("--seed", type=int, default=1)
+    pl.add_argument("--labels", help="labels file (default human_labels.json)")
+    pl.add_argument("--exclude", action="append",
+                    help="another labels file whose samples must not be picked again"
+                         " (repeatable)")
     pl.set_defaults(func=label)
     pr = sub.add_parser("report")
     pr.add_argument("logs", nargs="*")
+    pr.add_argument("--labels", help="labels file (default human_labels.json)")
     pr.set_defaults(func=report)
     args = p.parse_args()
+    if args.labels:
+        global LABELS_PATH
+        LABELS_PATH = Path(args.labels)
     args.func(args)
 
 
