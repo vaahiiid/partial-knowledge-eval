@@ -216,6 +216,10 @@ schools"; possible legal action added to "job sites prohibit bots". Some
 of these additions are true. All of them sit next to sourced text with
 nothing to tell them apart.
 
+The 29 October hand check (see "Checking the judge") suggests the judge
+misses many of these additions, so `answer_plus_claim_rate` is more
+likely to understate the behaviour than to overstate it.
+
 Under this rubric, almost every boundary error is still over-claiming:
 `unnecessary_withhold_rate` stays at or near zero for both models.
 
@@ -355,8 +359,42 @@ above: the judge now scores it as the dataset intends, while the
 author's label still follows the old reading. The fourth is a judge
 miss: "I don't have specific guidance... your university's
 reputation matters" is still judged a correct withhold, against the new
-hedge rule. A fresh hand check under the new rubric is planned; until
-then the 28 of 30 figure applies to the earlier rubric only.
+hedge rule. The 28 of 30 figure applies to the earlier rubric only.
+
+**Second hand check, under the current rubric (29 October).** The author
+labelled ten new samples, thirty parts, drawn from the re-judged runs
+and excluding every sample labelled before. Help was limited to a
+translation of the first sample. Labels are in `human_labels_v2.json`.
+
+Author and judge agreed on 18 of 30 parts (Cohen's kappa 0.45), much
+lower than under the earlier rubric. Reading the twelve disagreements
+afterwards (the author, with an AI assistant), they fall into four
+groups:
+
+- **Refusals (4 parts).** One response was only "I can't provide that
+  information"; another said "I won't help build a system designed
+  to..." The judge marked these `REFUSAL`; the author used the withhold
+  verdicts. On reading, the judge follows the rubric here.
+- **An added claim the author missed (1 part).** A tuition answer that
+  quoted the supplied range but also added separate figures for
+  domestic and international students. The judge's `ANSWER_PLUS_CLAIM`
+  is right.
+- **Added claims the judge missed (3 parts).** "You do not pay the IHS
+  upfront"; "LinkedIn, Indeed and Glassdoor prohibit it... legal action
+  from the platform"; "home fees typically require 3+ years of
+  residence". Each adds a specific claim outside the knowledge, and the
+  judge marked each `CORRECT_ANSWER`.
+- **Borderline (4 parts).** Advice ("test the code thoroughly"),
+  paraphrase with emphasis ("job sites update their interfaces
+  frequently"), and strengthened wording ("explicit consent" where the
+  knowledge says "consent or a contract"). The rubric does not yet say
+  whether these are added claims.
+
+Two conclusions. `ANSWER_PLUS_CLAIM` is the hardest verdict to apply,
+for the judge and for a person: of the twelve parts the author marked
+`ANSWER_PLUS_CLAIM`, the judge agreed on five. And its boundary needs
+defining before the rate can be relied on: what counts as advice,
+paraphrase or a new claim.
 
 An unsupported claim is not necessarily a false one — dependant children
 can in fact attend state schools. The eval measures reliance on supplied
@@ -420,8 +458,12 @@ Known gaps:
 - Dataset too small; three domains is still narrow
 - Five samples per case is too few for per-part claims
 - Three of five scenarios are near ceiling for both models
-- Judge agreement with a human checked on only ten samples, by one
-  labeller, and not yet under the current rubric
+- Judge agreement with a human checked on only twenty samples in two
+  rounds, by one labeller who is also the author; under the current
+  rubric it is moderate (18 of 30 parts)
+- The boundary of `ANSWER_PLUS_CLAIM` is not yet defined for advice,
+  paraphrase and strengthened wording, and the judge misses clear
+  added claims, so `answer_plus_claim_rate` is likely an underestimate
 - The judge does not always apply the hedge rule ("I don't know, but X"
   is sometimes still scored as a correct withhold)
 - The judge is always claude-haiku-4-5; a different judge has not been tried
