@@ -225,6 +225,37 @@ Before re-judging under the 9 November rules, the same responses scored
 `answer_plus_claim_rate`. The rule change moved each figure by about
 0.01 to 0.03.
 
+### With an explicit instruction to stay within the material (9 November)
+
+In the runs above, the model is given the reference material but is not
+told to use only that material. A reader could fairly say the eval then
+penalises a model for using its own knowledge when nothing told it not
+to. To separate the two, both models were run again with one sentence
+added to the system prompt (`-T instruction=grounded`): "Answer only
+from the reference material above. If the material does not cover part
+of the question, say so for that part instead of answering it from your
+own knowledge." Same cases, same judge, five samples each.
+
+| Metric | claude-haiku-4-5 default | claude-haiku-4-5 grounded | llama3.1:8b default | llama3.1:8b grounded |
+|---|---|---|---|---|
+| `boundary_accuracy` | 0.54 | 0.99 | 0.44 | 0.87 |
+| `unsupported_claim_rate` | 0.71 | 0.00 | 0.90 | 0.06 |
+| `answer_plus_claim_rate` | 0.25 | 0.02 | 0.26 | 0.08 |
+| `unnecessary_withhold_rate` | 0.00 | 0.00 | 0.01 | 0.07 |
+| `refusal_rate` | 0.01 | 0.00 | 0.12 | 0.02 |
+
+One sentence removes almost all of the gap-filling. So the default
+figures measure what a model does when it is handed reference material
+without being told how to use it, not an inability to hold back. The
+smaller model, once instructed, starts to hold back on some parts it
+could have answered (0.07), a cost the larger model does not show.
+
+Not yet checked by hand. The grounded figures are the judge's verdicts
+only, and the hand checks above found that the judge misses added
+claims, so the grounded `answer_plus_claim_rate` may be low. Haiku's
+grounded result is close to the ceiling, which means this dataset, in
+its current form, cannot tell instructed strong models apart.
+
 ### Previous rubric (28 October)
 
 On 28 October the rubric gained `ANSWER_PLUS_CLAIM` and the hedge rule
