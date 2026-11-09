@@ -250,9 +250,34 @@ without being told how to use it, not an inability to hold back. The
 smaller model, once instructed, starts to hold back on some parts it
 could have answered (0.07), a cost the larger model does not show.
 
-Not yet checked by hand. The grounded figures are the judge's verdicts
-only, and the hand checks above found that the judge misses added
-claims, so the grounded `answer_plus_claim_rate` may be low. Haiku's
+**Hand check of the grounded runs (9 November).** The author labelled
+ten samples from the two grounded runs, thirty parts, blind to the
+judge, excluding every sample labelled before. Labels are in
+`human_labels_v3.json`. Author and judge agreed on 20 of 30 parts
+(Cohen's kappa 0.52). Eight of the ten disagreements are covered parts
+the author marked `ANSWER_PLUS_CLAIM` and the judge marked
+`CORRECT_ANSWER`. Reading them afterwards (the author, with an AI
+assistant), the labels stay as recorded but the reading is:
+
+- **The judge missed strengthened answers (3 parts).** "Many job sites
+  prohibit bots" answered as a flat "No"; "consent or a contract"
+  answered as "explicit consent"; "automated browser systems tend to
+  break" turned into "job sites frequently update their interfaces".
+- **The author over-flagged (3 parts).** Close paraphrases, where the
+  only added words came from the question ("for a master's in the UK",
+  "to help pay for their studies").
+- **The author missed what the judge caught (2 parts).** "Most
+  programmes require 6.5" given as "the score needed is 6.5", and a
+  covered grade question withheld (the known `entry_requirements`
+  part 3 case).
+- **Borderline (2 parts).**
+
+So under the grounded instruction the models rarely add new facts, but
+they sometimes strengthen what the material says, most often when they
+compress it into a yes or no. The judge misses many of these, so the
+grounded `answer_plus_claim_rate` (0.02 and 0.08) is a floor. The
+author also over-flags close paraphrases, which is one more reason for
+a second labeller. Haiku's
 grounded result is close to the ceiling, which means this dataset, in
 its current form, cannot tell instructed strong models apart.
 
