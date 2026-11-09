@@ -50,6 +50,10 @@ async def run(args: argparse.Namespace) -> None:
 
     llm = llm_factory(args.model, provider="anthropic", client=AsyncAnthropic(),
                       max_tokens=2048)
+    # Recent versions of the anthropic SDK no longer accept sampling
+    # parameters, but RAGAS sends temperature and top_p by default.
+    for arg in ("temperature", "top_p"):
+        llm.model_args.pop(arg, None)
     metric = Faithfulness(llm=llm)
 
     labels = load_labels(args.labels)
