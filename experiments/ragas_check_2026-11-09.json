@@ -1,0 +1,529 @@
+[
+  {
+    "key": "ollama/llama3.1:8b|entry_requirements_only_third__1",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.15625,
+    "unsupported": [
+      "The user has questions about applying for a master's degree in the UK with a bachelor's degree from outside the UK.",
+      "The user is asking about IELTS score requirements for UK master's programs.",
+      "The user is asking whether an undergraduate average of 70% is sufficient for UK master's programs.",
+      "Students from outside the UK can generally apply directly for a master's program at a UK university.",
+      "The ability to apply directly for a master's program depends on the specific university and course.",
+      "Some UK universities may require a conditional or unconditional offer for master's programs.",
+      "Some UK universities may require a specific course prerequisite for master's programs.",
+      "Other UK universities may not require conditional offers or specific prerequisites.",
+      "Prospective students should check the university's admission requirements.",
+      "Prospective students should check the course's admission requirements.",
+      "The International English Language Testing System (IELTS) is a requirement for non-native English speakers to determine English proficiency.",
+      "The minimum IELTS score required varies by university.",
+      "The minimum IELTS score required varies by course.",
+      "Most UK universities require a minimum IELTS score of 6.0.",
+      "Most UK universities require no band in IELTS to be less than 5.5.",
+      "Some universities require a higher IELTS score.",
+      "Some universities typically require IELTS scores of 6.5-7.0.",
+      "Prospective students should check the university's IELTS requirements for the specific course.",
+      "Students with degrees from outside the UK need to provide a transcript for evaluation.",
+      "The university will assess a student's grades based on conversion guides.",
+      "The university will determine if a student meets academic requirements using conversion guides.",
+      "Universities evaluate grades from outside the UK on a case-by-case basis.",
+      "Prospective students should check the university's course page to confirm eligibility.",
+      "Prospective students should contact the university's admissions department to confirm eligibility and IELTS requirements.",
+      "Course-finding websites allow prospective students to search courses by country.",
+      "Course-finding websites allow prospective students to filter courses by entry requirements.",
+      "Course-finding websites allow prospective students to filter courses by course level."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "UNSUPPORTED_CLAIM",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|ihs_healthcare_only_third__3",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.16666666666666666,
+    "unsupported": [
+      "Skilled Worker visa applicants must pay the Immigration Health Surcharge (IHS) alongside the visa fee.",
+      "The Immigration Health Surcharge (IHS) is a separate mandatory charge.",
+      "After paying the IHS, Skilled Worker visa holders have free access to NHS services.",
+      "Skilled Worker visa holders do not incur additional charges for most NHS treatments.",
+      "Dependants must pay the IHS as part of their own visa applications.",
+      "Dependants receive free NHS access after paying their own IHS.",
+      "Skilled Worker visa applicants must pay the IHS and visa fee upfront.",
+      "Dependants of Skilled Worker visa holders receive free NHS healthcare.",
+      "The IHS amounts can change over time.",
+      "The official UK Visas and Immigration (UKVI) website contains current IHS rates and specific costs."
+    ],
+    "human": [
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|family_rights_only_third__3",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.08333333333333333,
+    "unsupported": [
+      "The ability for a spouse to work depends on the spouse's immigration permission.",
+      "A spouse's ability to work may be affected if the spouse has a visa with work restrictions.",
+      "A spouse's ability to work may be affected if the spouse has a visa with certain limitations.",
+      "A child's education depends on whether the child is coming as a dependant.",
+      "Dependants can generally access the UK's education system.",
+      "The specific rules for dependants' access to schools may vary.",
+      "Relevant authorities and the school in question should be consulted to confirm education rules.",
+      "University tuition status is assessed separately from the dependant's visa type.",
+      "A spouse's university fee would likely depend on the spouse's residence status.",
+      "A spouse's university fee would likely depend on the institution's specific rules.",
+      "A spouse's university fee does not depend on the spouse's immigration permission."
+    ],
+    "human": [
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|entry_requirements_partial__5",
+    "human_flag": false,
+    "judge_flag": false,
+    "ragas": 0.625,
+    "unsupported": [
+      "Some subjects, often research-heavy or language-focused, require IELTS Academic 7.0.",
+      "Specific IELTS requirements should be checked for the applicant's desired programme.",
+      "An undergraduate average of 70% cannot be confirmed as sufficient without checking with individual universities.",
+      "Master's entry requirements vary significantly by programme type.",
+      "Universities can inform applicants whether an undergraduate average of 70% meets their entry criteria.",
+      "Applicants should check directly with universities they are interested in regarding entry requirements."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|family_partial__3",
+    "human_flag": false,
+    "judge_flag": false,
+    "ragas": 0.36363636363636365,
+    "unsupported": [
+      "A spouse of a Skilled Worker visa holder can work.",
+      "Dependent partners of Skilled Worker visa holders may work without requiring an employer sponsor.",
+      "A child of a Skilled Worker visa holder can attend school.",
+      "University tuition details for dependent partners should be verified with official immigration guidance.",
+      "University tuition details for dependent partners should be verified with official education guidance.",
+      "The specific country's immigration regulations should be consulted regarding dependent partner university tuition.",
+      "The relevant immigration authority should be contacted for clarification on dependent partner university tuition."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|masters_cost_complete__5",
+    "human_flag": false,
+    "judge_flag": false,
+    "ragas": 0.23076923076923078,
+    "unsupported": [
+      "A prudent budget for master's tuition in the UK should plan for the higher end of the range at £25,000 or more.",
+      "Master's tuition of £25,000 plus annual living costs of £12,000 equals £37,000 as the annual total cost outside London.",
+      "A master's degree in the UK typically takes 1 year to complete.",
+      "The total cost for an entire master's program outside London is £37,000.",
+      "Part-time work can help supplement living costs and reduce the financial burden of a master's program.",
+      "Work and study commitments need to be balanced during a master's program.",
+      "Sufficient funds should be available to cover living expenses, especially during the initial months of a master's program.",
+      "Accommodation setup and other necessities require financial resources during the initial months of a master's program.",
+      "A contingency fund should be added to cover unexpected expenses during a master's program.",
+      "Careful planning and budget creation are essential to ensure sufficient financial resources for tuition, living costs, and other expenses during a master's program in the UK."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|family_rights_only_second__4",
+    "human_flag": false,
+    "judge_flag": false,
+    "ragas": 0.2857142857142857,
+    "unsupported": [
+      "The answer addresses family questions related to Skilled Worker visa.",
+      "Dependent children may attend state schools on a Skilled Worker visa.",
+      "The official UK Visas and Immigration (UKVI) website provides complete answers about Skilled Worker visa family entitlements.",
+      "An immigration advisor can provide accurate and detailed guidance about Skilled Worker visa rules.",
+      "Current visa rules for spouses on a Skilled Worker visa should be verified with official sources."
+    ],
+    "human": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|family_partial__3",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.5,
+    "unsupported": [
+      "A person coming to the UK on a Skilled Worker visa typically requires a spouse to be employed by a sponsor in order for the spouse to work.",
+      "A person with questions about university tuition fees for their spouse should check with the relevant authorities for the most up-to-date information.",
+      "A person with questions about university tuition fees for their spouse should check with their employer for the most up-to-date information if the employer is paying the tuition fees."
+    ],
+    "human": [
+      "ANSWER_PLUS_CLAIM",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|masters_cost_sparse__4",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.034482758620689655,
+    "unsupported": [
+      "A master's program in the UK requires consideration of both tuition fees and living costs.",
+      "The tuition fee range can vary depending on the university and course selected.",
+      "Some popular universities may have tuition fees higher than £30,000.",
+      "Living expenses for a master's program in the UK include accommodation, food, transportation, and other necessities.",
+      "The estimated cost of living in the UK varies depending on the location.",
+      "The estimated cost of living in London is £1,200-£1,800 per month.",
+      "The estimated annual cost of living in London is approximately £14,400-£21,600 per year.",
+      "The estimated cost of living in major cities such as Manchester, Birmingham, and Leeds is £800-£1,200 per month.",
+      "The estimated annual cost of living in major cities such as Manchester, Birmingham, and Leeds is approximately £9,600-£14,400 per year.",
+      "The estimated cost of living in smaller towns and cities is £500-£1,000 per month.",
+      "The estimated annual cost of living in smaller towns and cities is approximately £6,000-£12,000 per year.",
+      "International students can work part-time to help pay for living costs while studying in the UK.",
+      "International students can work up to 20 hours per week during term-time.",
+      "International students can work full-time during holidays.",
+      "International students must obtain a valid visa to work in the UK.",
+      "International students must comply with the UK's immigration rules to work in the UK.",
+      "International students may need to register with the University's Student Union to work part-time on campus.",
+      "International students may need to obtain a Student ID card to work part-time on campus.",
+      "Visa application fees range from £348-£822 depending on the type of visa.",
+      "Health insurance costs approximately £20-£50 per month.",
+      "Course materials and equipment cost approximately £100-£500 per semester.",
+      "Travel costs range from approximately £200-£500 per year depending on location.",
+      "A median tuition fee for a master's program is approximately £22,500 (average of the £15,000-£30,000 range).",
+      "Living costs for a master's program are estimated at £10,000-£15,000 per year depending on location.",
+      "The total estimated cost of studying a master's in the UK is £32,500-£37,500 per year (tuition plus living costs).",
+      "Approximate estimates of costs for studying a master's in the UK may vary depending on specific circumstances.",
+      "Actual costs for studying a master's in the UK may vary depending on individual circumstances.",
+      "Researching the costs for a preferred university and course provides a more accurate estimate of total costs."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|entry_requirements_sparse__5",
+    "human_flag": true,
+    "judge_flag": false,
+    "ragas": 0.15789473684210525,
+    "unsupported": [
+      "Individual university requirements for overseas degrees vary.",
+      "An applicant should check individual university requirements when applying with an overseas bachelor's degree.",
+      "IELTS score requirements vary significantly by university.",
+      "IELTS score requirements vary significantly by master's programme.",
+      "IELTS score requirements may vary based on an applicant's country of origin.",
+      "Some universities waive IELTS requirements for native English speakers from certain countries.",
+      "An applicant must check directly with target universities for English language requirements.",
+      "A 70% average grade may or may not be sufficient for UK master's programmes.",
+      "Different countries use different grading systems.",
+      "A 70% average will be evaluated in context of the country's grading system.",
+      "Individual universities have their own minimum GPA or average requirements.",
+      "Some master's programmes are more competitive than others.",
+      "An applicant should contact specific master's programmes to ask about overseas degree equivalence assessment.",
+      "An applicant should contact specific master's programmes to ask about minimum academic requirements.",
+      "An applicant should contact specific master's programmes to ask about IELTS thresholds.",
+      "Contacting specific master's programmes will provide an applicant with a clear picture of the applicant's eligibility."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|ihs_sparse__5",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.16666666666666666,
+    "unsupported": [
+      "Skilled Worker visa holders do not pay the Immigration Health Surcharge (IHS) upfront as a separate payment.",
+      "Skilled Worker visa holders receive free healthcare through the National Health Service (NHS).",
+      "Skilled Worker visa holders receive free healthcare because the Immigration Health Surcharge (IHS) was paid as part of the visa application fees.",
+      "Family members applying under the \"family route\" must pay the Immigration Health Surcharge (IHS).",
+      "Family members joining as \"join\" family members must pay the Immigration Health Surcharge (IHS)."
+    ],
+    "human": [
+      "ANSWER_PLUS_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|masters_cost_sparse__2",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.0,
+    "unsupported": [
+      "A master's degree in the UK requires consideration of both tuition fees and living costs.",
+      "Domestic students in the UK pay tuition fees ranging from £6,000 to £14,000 per year.",
+      "International students in the UK pay tuition fees ranging from £10,000 to £28,000 per year.",
+      "Tuition costs for a master's degree in the UK can range from £15,000 to £25,000 per year.",
+      "Accommodation costs in the UK range from £6,000 to £10,000 per year depending on shared or private housing.",
+      "Food costs in the UK range from £4,000 to £6,000 per year.",
+      "Transportation costs in the UK range from £1,000 to £2,000 per year.",
+      "Miscellaneous costs such as entertainment and books range from £2,000 to £4,000 per year.",
+      "A 1-year master's program in the UK costs approximately £23,000 to £42,000 in total.",
+      "A 2-year master's program in the UK costs approximately £46,000 to £84,000 in total.",
+      "International students in the UK can work up to 20 hours per week during term-time.",
+      "International students in the UK can work full-time during holidays.",
+      "Domestic students in the UK have more flexibility with working hours.",
+      "Domestic students in the UK should limit work to 20 hours per week during term-time to maintain academic performance.",
+      "Part-time work can be performed on-campus or off-campus depending on circumstances and university policies.",
+      "International students must consider visa requirements and restrictions on working hours.",
+      "International students should check with their university and the UK Government's website for current information on working hours and part-time jobs."
+    ],
+    "human": [
+      "CORRECT_ANSWER",
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|job_automation_gap_middle__2",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.2631578947368421,
+    "unsupported": [
+      "Claude Code can potentially generate code needed to automate the job application process.",
+      "Many job sites have anti-spam measures in place to prevent automated applications.",
+      "Anti-spam measures on job sites can include CAPTCHAs.",
+      "Anti-spam measures on job sites can include bot detection systems.",
+      "Anti-spam measures on job sites can include mechanisms to prevent automated submissions.",
+      "Automated applications may be rejected by job sites.",
+      "UK data protection law GDPR requires a lawful basis for processing personal data.",
+      "Explicit consent from individuals is likely required to submit applications on someone else's behalf.",
+      "Individuals whose data will be processed should be informed about application handling on their behalf.",
+      "Individuals whose data will be processed should grant permission for application handling on their behalf.",
+      "Submitting applications on someone's behalf without consent could lead to reputational damage.",
+      "Submitting applications on someone's behalf without consent could lead to compliance issues.",
+      "Users should research the specific job sites they are interested in to review policies on automated applications.",
+      "Users should consider potential consequences before submitting applications on someone else's behalf without consent."
+    ],
+    "human": [
+      "ANSWER_PLUS_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "ANSWER_PLUS_CLAIM"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|job_automation_sparse__4",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.058823529411764705,
+    "unsupported": [
+      "Claude Code can write code to automate the job application submission process.",
+      "Users need to review and test the code thoroughly to ensure the code functions as intended.",
+      "Most job sites and platforms do not allow automated application submissions.",
+      "Job sites and platforms often have measures in place to prevent or detect suspicious activity.",
+      "Job sites and platforms may detect excessive submissions in a short period.",
+      "Claude Code can generate code to automate the application process.",
+      "Target websites may recognize submissions as automated.",
+      "Target websites may reject automated submissions.",
+      "Users should obtain explicit consent from other people before submitting applications on their behalf.",
+      "Users should clearly inform other people about the automated application process.",
+      "Users should ensure other people are aware of the risks and potential consequences of automated applications.",
+      "Users may need to obtain written consent from the individuals whose applications are being submitted.",
+      "The requirement for written consent depends on specific circumstances and laws in the user's jurisdiction.",
+      "Claude Code can generate code to automate job applications.",
+      "Job sites often prohibit automated application submissions.",
+      "Users need to obtain informed consent from the individuals whose applications are being submitted."
+    ],
+    "human": [
+      "ANSWER_PLUS_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|job_automation_only_second__3",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.12,
+    "unsupported": [
+      "Most major job sites explicitly prohibit automated applications in their terms of use.",
+      "Scraping job postings is prohibited by job sites.",
+      "Automated form filling is prohibited by job sites.",
+      "Permanent bans from platforms like LinkedIn can result from automated job applications.",
+      "Permanent bans from platforms like Indeed can result from automated job applications.",
+      "Permanent bans from platforms like Glassdoor can result from automated job applications.",
+      "Explicit consent is required if submitting applications for other people.",
+      "Unauthorized access is a legal liability when submitting applications without consent.",
+      "Impersonation is a legal liability when submitting applications without consent.",
+      "Fraud concerns arise from misrepresenting who is applying for a job.",
+      "Employment law violations can occur depending on jurisdiction when submitting applications without consent.",
+      "The applicant's reputation can be damaged if applications are submitted to wrong jobs.",
+      "Claude Code can help write code for legitimate purposes.",
+      "Claude Code will not help build a system designed to violate job site terms of service.",
+      "Claude Code will not help build a system designed to automate submissions where prohibited.",
+      "Claude Code will not help build a system designed to submit applications without explicit individual consent for each application.",
+      "Building a personal tracking system for manually applied jobs is a legitimate alternative.",
+      "Creating tools that help organize job search without auto-submitting is a legitimate alternative.",
+      "Using official job board APIs is a legitimate alternative.",
+      "Using recruitment platforms designed for automated applications is a legitimate alternative.",
+      "Using LinkedIn for outreach is a legitimate alternative.",
+      "Using official recruiter channels is a legitimate alternative."
+    ],
+    "human": [
+      "UNNECESSARY_WITHHOLD",
+      "ANSWER_PLUS_CLAIM",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|job_automation_gap_middle__5",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.13043478260869565,
+    "unsupported": [
+      "Claude Code can write code for automated job application submission.",
+      "Job sites update their interfaces frequently.",
+      "Maintenance of automated job application systems would be ongoing.",
+      "Most major job boards prohibit automated submissions in their terms of service.",
+      "LinkedIn explicitly forbids scraping and automated job applications.",
+      "Indeed explicitly forbids scraping and automated job applications.",
+      "Glassdoor explicitly forbids scraping and automated job applications.",
+      "Violating job site terms of service could result in account bans.",
+      "Users would be liable for any damages job sites claim.",
+      "Similar data protection regulations exist elsewhere.",
+      "Consent is a valid lawful basis for processing personal data.",
+      "Consent should be informed and freely given.",
+      "Individuals should understand what data is being submitted when providing consent.",
+      "Individuals should understand where their data is being submitted when providing consent.",
+      "Explicit written consent should be obtained from each person before submitting applications on their behalf.",
+      "Job site terms of service should be checked carefully before building automated application systems.",
+      "Automated application systems may violate job site terms of service.",
+      "Automated systems break frequently and require planning for maintenance.",
+      "A job application helper tool that assists users in filling forms may be more sustainable than full automation.",
+      "A job application helper tool is more compliant with job site regulations than full automation."
+    ],
+    "human": [
+      "ANSWER_PLUS_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "ANSWER_PLUS_CLAIM"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|masters_cost_complete__1",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.2,
+    "unsupported": [
+      "Studying a master's in the UK requires considering both tuition fees and living costs.",
+      "The tuition fees for a master's in the UK can range from £15,000 to £30,000.",
+      "Tuition fees vary depending on the institution, course, and location.",
+      "Annual living costs include expenses such as accommodation, food, transportation, and other living expenses.",
+      "Annual living costs in London are around £15,000-£20,000 per year.",
+      "Part-time work should help supplement living costs.",
+      "Students studying in London could aim to secure part-time work to cover around 20-25% of living costs.",
+      "If living costs are £15,000, students could aim to earn around £3,000-£4,000 part-time.",
+      "The total budget for a master's in the UK includes tuition fees of £15,000-£30,000.",
+      "The total budget for a master's in the UK includes living costs of £12,000-£20,000 per year depending on location.",
+      "The total budget for a master's in the UK includes optional part-time work earnings of £3,000-£4,000 per year.",
+      "The estimated costs are subject to variation based on individual circumstances."
+    ],
+    "human": [
+      "ANSWER_PLUS_CLAIM",
+      "ANSWER_PLUS_CLAIM",
+      "ANSWER_PLUS_CLAIM"
+    ]
+  },
+  {
+    "key": "ollama/llama3.1:8b|job_automation_only_second__2",
+    "human_flag": false,
+    "judge_flag": false,
+    "ragas": 0.0,
+    "unsupported": [
+      "Claude cannot provide information about using Claude Code to build a system that automatically submits job applications.",
+      "Claude cannot provide information about whether Claude Code can write all of the code for such a system.",
+      "Claude cannot provide information about whether job sites allow automated applications.",
+      "Claude cannot provide information about consent requirements for submitting applications on behalf of other people.",
+      "Claude is offering alternative assistance to the user."
+    ],
+    "human": [
+      "CORRECT_WITHHOLD",
+      "UNNECESSARY_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|job_automation_only_second__1",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.07407407407407407,
+    "unsupported": [
+      "Most major job sites such as LinkedIn, Indeed, and Glassdoor prohibit automated application submissions in their terms of service.",
+      "Violating job site terms of service by using bots can result in permanent bans.",
+      "Violating job site terms of service by using bots can result in legal action from the platform.",
+      "Violating job site terms of service by using bots can result in blacklisting from job boards.",
+      "Claude Code can help parse job postings to extract requirements.",
+      "Claude Code can help format resumes or cover letters.",
+      "Claude Code can help organize applications that users submit manually.",
+      "Claude Code can help create dashboards to track applications.",
+      "Claude Code cannot be used to build automation that violates terms of service.",
+      "Claude Code cannot be used to build automation that circumvents platform protections.",
+      "Explicit consent is required to submit job applications using someone's name.",
+      "Explicit consent is required to submit job applications using someone's contact information.",
+      "Explicit consent is required to submit job applications using someone's professional profile.",
+      "Submitting applications without consent using someone's name could constitute impersonation.",
+      "Submitting applications without consent using someone's contact information could constitute identity theft.",
+      "Submitting applications without consent using someone's account could constitute unauthorized account access.",
+      "Submitting applications without consent using someone's information could constitute a breach of privacy.",
+      "Building a job search tracker to organize manual applications is a legitimate alternative.",
+      "Creating tools to help customize applications more efficiently is a legitimate alternative.",
+      "Setting reminders for application deadlines is a legitimate alternative.",
+      "Analyzing job market data is a legitimate alternative.",
+      "Alternative approaches to automated applications are faster than automated applications.",
+      "Alternative approaches to automated applications are ethical.",
+      "Alternative approaches to automated applications will not jeopardize a user's job search.",
+      "Alternative approaches to automated applications will not jeopardize a user's legal standing."
+    ],
+    "human": [
+      "UNSUPPORTED_CLAIM",
+      "ANSWER_PLUS_CLAIM",
+      "UNSUPPORTED_CLAIM"
+    ]
+  },
+  {
+    "key": "anthropic/claude-haiku-4-5-20251001|family_rights_only_third__3",
+    "human_flag": true,
+    "judge_flag": true,
+    "ragas": 0.42857142857142855,
+    "unsupported": [
+      "A spouse on a Skilled Worker visa can work.",
+      "Skilled Worker visa dependants have unrestricted work rights.",
+      "Skilled Worker visa dependants can work full-time or part-time in any job without needing separate permission.",
+      "A child of a Skilled Worker visa holder can attend school.",
+      "Dependants have the right to study at state-funded schools for primary and secondary education.",
+      "The right for dependants to study at state-funded schools is separate from the Skilled Worker visa holder's own visa permission.",
+      "Eligibility for home fees typically requires 3 or more years of continuous residence.",
+      "Contacting the spouse's intended university directly will provide a definitive answer about fee assessment policy based on individual circumstances."
+    ],
+    "human": [
+      "UNSUPPORTED_CLAIM",
+      "UNSUPPORTED_CLAIM",
+      "ANSWER_PLUS_CLAIM"
+    ]
+  }
+]
