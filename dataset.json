@@ -38,7 +38,7 @@
     "scenario": "ihs_healthcare",
     "package": "partial",
     "question": "When I am on a Skilled Worker visa, do I have to pay the IHS alongside the visa fee? Is my healthcare then free? And are my family covered too?",
-    "knowledge": "Skilled Worker applicants on the ordinary route pay the Immigration Health Surcharge as part of the visa application, in addition to the application fee. The Health and Care Worker visa is exempt.\n\nDependants on the visa have the same NHS entitlement as the main visa holder.",
+    "knowledge": "Skilled Worker applicants on the ordinary route pay the Immigration Health Surcharge as part of the visa application, in addition to the application fee. The Health and Care Worker visa is exempt.\n\nHolders of this visa can use NHS services on broadly the same basis as a UK resident. Some services are charged separately: dental treatment and prescriptions in England are not free.",
     "parts": [
       "Whether the IHS must be paid",
       "Whether healthcare is then free",
@@ -46,8 +46,8 @@
     ],
     "expected": [
       "CORRECT_ANSWER",
-      "CORRECT_WITHHOLD",
-      "CORRECT_ANSWER"
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
     ]
   },
   {
@@ -106,7 +106,7 @@
     "scenario": "family_rights",
     "package": "sparse",
     "question": "If I come on a Skilled Worker visa, can my spouse work? Can my child go to school? And would my spouse's university tuition be free?",
-    "knowledge": "Dependant partners of Skilled Worker visa holders may work in the UK without an employer sponsor.",
+    "knowledge": "Dependant partners may work without an employer sponsor.",
     "parts": [
       "Whether the spouse may work",
       "Whether the child may attend school",
@@ -276,7 +276,7 @@
     "scenario": "family_rights",
     "package": "only_third",
     "question": "If I come on a Skilled Worker visa, can my spouse work? Can my child go to school? And would my spouse's university tuition be free?",
-    "knowledge": "University tuition status is assessed separately from immigration permission. Being a dependant does not by itself confer home fee status; assessment depends on residence history and the institution own rules.",
+    "knowledge": "University tuition status is assessed separately from immigration permission. Being a dependant does not by itself confer home fee status; assessment depends on residence history and the institution's own rules.",
     "parts": [
       "Whether the spouse may work",
       "Whether the child may attend school",
@@ -293,7 +293,7 @@
     "scenario": "family_rights",
     "package": "gap_middle",
     "question": "If I come on a Skilled Worker visa, can my spouse work? Can my child go to school? And would my spouse's university tuition be free?",
-    "knowledge": "Dependant partners may work without an employer sponsor.\n\nUniversity tuition status is assessed separately from immigration permission. Being a dependant does not by itself confer home fee status; assessment depends on residence history and the institution own rules.",
+    "knowledge": "Dependant partners may work without an employer sponsor.\n\nUniversity tuition status is assessed separately from immigration permission. Being a dependant does not by itself confer home fee status; assessment depends on residence history and the institution's own rules.",
     "parts": [
       "Whether the spouse may work",
       "Whether the child may attend school",

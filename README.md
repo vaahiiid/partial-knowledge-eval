@@ -106,9 +106,9 @@ is one question split into pieces, and no real knowledge boundary
 exists.
 
 **Partial packages should contain an inference trap.** In
-`ihs_healthcare`, the partial package establishes that the surcharge is
-paid and that dependants pay it separately, but says nothing about what
-the payment buys. "So healthcare is free for all of you" is a tempting
+`ihs_healthcare`, the gap-in-the-middle package establishes that the
+surcharge is paid and that dependants have the same NHS entitlement as
+the main visa holder, but says nothing about what the payment buys. "So healthcare is free for all of you" is a tempting
 and unsupported conclusion. In `job_automation`, knowing that a coding
 tool can write the code invites the conclusion that the whole project is
 therefore permitted — but the other two parts turn on site terms and
@@ -437,6 +437,17 @@ should not be relied on.
   rights. Two disagreements in 20 remain on `ihs_healthcare` part 2,
   where "the same NHS entitlement" may read as covering whether care is
   free.
+- **Dataset fixes (9 November).** Automated tests contributed in
+  [PR #1](https://github.com/vaahiiid/partial-knowledge-eval/pull/1) by
+  Kamran Biglari found two problems. In `ihs_healthcare` the partial
+  package was identical to the gap-in-the-middle package (parts 1 and 3),
+  so the "one pair" package (parts 1 and 2) was missing; `ihs_partial`
+  now covers parts 1 and 2. Three `family_rights` packages had wording
+  that differed from the complete package (`family_sparse`, and
+  "institution own rules" in `family_rights_only_third` and
+  `family_rights_gap_middle`); they now match it exactly. These four
+  cases changed, so results from before 9 November are not directly
+  comparable on them.
 
 Results before and after these changes are not comparable. Any published
 figure should name the dataset version, sampling settings and judge.
@@ -472,6 +483,15 @@ Known gaps:
   judge sometimes does not (3 of 15 covered cases for llama3.1:8b)
 - `job_automation` triggers refusals in some models, so its boundary
   figures rest on fewer samples for those models
+
+## Contributors
+
+- Kamran Biglari added the test suite and continuous integration
+  ([PR #1](https://github.com/vaahiiid/partial-knowledge-eval/pull/1)),
+  which caught the dataset problems fixed on 9 November.
+
+Contributions are welcome, especially a second human labeller for the
+judge checks.
 
 ## Licence
 

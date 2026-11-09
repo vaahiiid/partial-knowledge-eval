@@ -27,22 +27,12 @@ for _r in DATASET:
     BY_SCENARIO[_r["scenario"]].append(_r)
 SCENARIOS = sorted(BY_SCENARIO)
 
-# Known dataset problems, left unfixed because changing the dataset makes
-# earlier results incomparable. strict=True, so a fix turns these red
-# until the entry is removed here.
-KNOWN_KNOWLEDGE_DRIFT = {
-    # Partner sentence differs from family_complete ("of Skilled Worker
-    # visa holders ... in the UK").
-    "family_sparse",
-    # "the institution own rules" vs "the institution's own rules".
-    "family_rights_only_third",
-    "family_rights_gap_middle",
-}
-KNOWN_DUPLICATE_COVERAGE = {
-    # ihs_partial and ihs_healthcare_gap_middle both cover parts 1 and 3
-    # with identical knowledge; the "one pair" package (parts 1 and 2) is missing.
-    "ihs_healthcare",
-}
+# Known dataset problems that are left unfixed on purpose (for example so
+# earlier results stay comparable). strict=True, so fixing one turns its
+# test red until the entry is removed here. None at present: the issues
+# found in PR #1 were fixed in the dataset.
+KNOWN_KNOWLEDGE_DRIFT: set[str] = set()
+KNOWN_DUPLICATE_COVERAGE: set[str] = set()
 
 
 def known(ids: set[str], reason: str):
