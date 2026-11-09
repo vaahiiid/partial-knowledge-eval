@@ -10,4 +10,4 @@ wheels/
 .venv
 .env
 logs/
-ragas_check.json
+/ragas_check.json

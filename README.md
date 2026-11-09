@@ -416,8 +416,8 @@ scored with RAGAS faithfulness (ragas 0.4.3, claude-haiku-4-5 as its
 model), which splits a response into statements and checks each against
 the supplied knowledge. The question is at the sample level: does the
 response contain at least one unsupported or added claim? The script is
-`experiments/ragas_check.py`; per-sample output goes to
-`ragas_check.json`.
+`experiments/ragas_check.py`; the per-sample output of this run is in
+`experiments/ragas_check_2026-11-09.json`.
 
 | Method | Agrees with the author | Flags a clean response | Misses a flagged one |
 |---|---|---|---|
