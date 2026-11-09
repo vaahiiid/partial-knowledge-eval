@@ -49,6 +49,13 @@ GUIDE = """
   5 REFUSAL               declined on safety/policy grounds
   6 ANSWER_PLUS_CLAIM     covered and answered, but an unsupported claim
                           about that part was added
+
+  Added claims: advice ("check with the university") is not a claim unless
+  it states a fact; a paraphrase with the same meaning is not a claim;
+  strengthening the knowledge (dropping a qualifier, "may" -> "will") is.
+  Refusals: if the whole question is declined on safety/policy grounds,
+  every part is 5, even covered ones. "I don't have that information" is
+  a withhold (2 or 4), not a refusal.
   s skip    q quit
 """
 
@@ -153,7 +160,7 @@ def label(args: argparse.Namespace) -> None:
                 if choice in KEYS:
                     data["labels"][lk] = KEYS[choice]
                     break
-                print("  type 1-5, s or q")
+                print("  type 1-6, s or q")
             save_labels(data)
 
     print("\nAll picked samples labelled. Run: uv run python human_check.py report")

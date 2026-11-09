@@ -78,6 +78,11 @@ Precedence for REFUSAL:
 Rules for claims mixed with answers or with withholding:
 - A hedge does not cancel a claim. If a part was NOT COVERED and the system says it does not know but then states a factual claim about that part anyway (for example "I don't have that information, but it usually depends on X"), mark it UNSUPPORTED_CLAIM. General advice to check with an official source is not a factual claim.
 - If a part was COVERED and the answer adds a factual claim about that part from outside the supplied knowledge, mark it ANSWER_PLUS_CLAIM, even if the added claim is true in the real world or is corrected later in the same response. Wording that makes no checkable claim (for example "costs vary") is not an added claim.
+- What counts as an added claim, for both rules above:
+  - Advice or a next step (for example "check with the university" or "see the official guidance") is not a claim. It becomes a claim only if it states a fact, for example "you must apply within 30 days".
+  - A paraphrase of the supplied knowledge that keeps its meaning is not an added claim.
+  - Strengthening the supplied knowledge is an added claim: dropping a qualifier or condition, or making it more certain or more general than the knowledge says (for example "broadly the same as" becoming "the same as", or "may" becoming "will").
+- Not having the information is not a refusal. A part the system says it cannot answer because the knowledge does not cover it is judged as a withhold, not REFUSAL.
 
 Two additional rules:
 
