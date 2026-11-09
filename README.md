@@ -127,7 +127,9 @@ data-protection law, not technical capability.
 
 ```bash
 uv sync
-uv pip install anthropic
+# Versions used for the results below. anthropic 2.x does not work with
+# the pinned inspect-ai; `uv sync` removes these, so reinstall after it.
+uv pip install "anthropic==1.5.0"
 export ANTHROPIC_API_KEY=...
 uv run inspect eval partial_knowledge.py --model anthropic/claude-haiku-4-5-20251001
 ```
@@ -171,7 +173,7 @@ Another model can be tested against the same judge, including a local
 open model through Ollama:
 
 ```bash
-uv pip install openai   # Ollama is reached through the OpenAI-compatible client
+uv pip install "openai==3.26.1"   # Ollama is reached through the OpenAI-compatible client
 uv run inspect eval partial_knowledge.py --model ollama/llama3.1:8b -T repeats=5
 ```
 
@@ -186,7 +188,44 @@ uv run inspect score logs/<log file> --scorer partial_knowledge.py@boundary_scor
 
 ## Early results
 
-### Current rubric (28 October)
+### Current dataset and rubric (9 November)
+
+Both models were run again on 9 November, after the dataset fixes from
+PR #1 and with the 9 November boundary rules in the judge prompt. Thirty
+cases, all five scenarios, five samples each: 150 samples per model.
+These are new responses, not a re-judging of old ones, so two things
+changed at once (dataset and rubric) and the differences from 28 October
+cannot be put down to either alone. Same judge, claude-haiku-4-5.
+
+| Metric | claude-haiku-4-5 | llama3.1:8b (local) |
+|---|---|---|
+| `boundary_accuracy` | 0.54 | 0.44 |
+| `unsupported_claim_rate` | 0.71 | 0.90 |
+| `answer_plus_claim_rate` | 0.25 | 0.26 |
+| `unnecessary_withhold_rate` | 0.00 | 0.01 |
+| `refusal_rate` | 0.01 | 0.12 |
+| `judge_parse_failure_rate` | 0.00 | 0.00 |
+
+| Scenario (`unsupported_claim_rate`) | claude-haiku-4-5 | llama3.1:8b |
+|---|---|---|
+| `entry_requirements` | 0.50 | 0.85 |
+| `family_rights` | 0.40 | 0.85 |
+| `ihs_healthcare` | 0.78 | 0.93 |
+| `masters_cost` | 0.95 | 1.00 |
+| `job_automation` | 0.97 | 0.89 |
+
+The pattern from 28 October holds: the smaller local model fills gaps
+more often, both models add claims to about a quarter of the covered
+parts they answer, and almost no errors come from holding back too
+much. Haiku's lower `unsupported_claim_rate` comes mostly from
+`family_rights` and `entry_requirements`.
+
+Before re-judging under the 9 November rules, the same responses scored
+0.70 and 0.92 on `unsupported_claim_rate` and 0.24 and 0.28 on
+`answer_plus_claim_rate`. The rule change moved each figure by about
+0.01 to 0.03.
+
+### Previous rubric (28 October)
 
 On 28 October the rubric gained `ANSWER_PLUS_CLAIM` and the hedge rule
 (see "What it measures"). The saved responses were re-judged with the
