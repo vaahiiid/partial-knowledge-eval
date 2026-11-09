@@ -410,6 +410,45 @@ can in fact attend state schools. The eval measures reliance on supplied
 knowledge, not truth. The risk lies in domains where the model's prior
 may be out of date, such as immigration rules.
 
+**A standard faithfulness metric on the same samples (9 November).**
+The twenty hand-labelled samples that are not pure refusals were also
+scored with RAGAS faithfulness (ragas 0.4.3, claude-haiku-4-5 as its
+model), which splits a response into statements and checks each against
+the supplied knowledge. The question is at the sample level: does the
+response contain at least one unsupported or added claim? The script is
+`experiments/ragas_check.py`; per-sample output goes to
+`ragas_check.json`.
+
+| Method | Agrees with the author | Flags a clean response | Misses a flagged one |
+|---|---|---|---|
+| This eval's judge (per part, re-judged runs) | 19 of 20 | 0 | 1 |
+| RAGAS faithfulness below 1 | 15 of 20 | 5 | 0 |
+
+RAGAS scored every response below 1, including the five the author
+judged clean. No threshold separates the two groups either: clean
+responses scored between 0.00 and 0.62, flagged ones between 0.00 and
+0.50. Reading the unsupported statements shows why. RAGAS counts as
+unsupported everything the knowledge does not state, including advice
+("check with the university"), simple arithmetic on supplied figures,
+and statements that the model does not have the information. In this
+eval those are the behaviours being rewarded.
+
+A small direct test checked that the knowledge reached RAGAS: a
+sentence copied from the knowledge was judged supported in three of
+three runs. A paraphrase that added the visa name from the question was
+judged unsupported in three of three, and "a child can attend school"
+against "dependant children may attend state schools" was supported in
+one of three. So part of the gap is design (RAGAS checks against the
+knowledge only, not the question) and part is instability between runs.
+The RAGAS calls ran without a temperature setting, because the
+installed anthropic SDK does not accept one.
+
+This is not a criticism of RAGAS, which measures something else:
+whether a response stays within its context. Here the context is
+incomplete on purpose, and saying "I don't have that" is the correct
+behaviour. Limits: twenty samples, one labeller, one RAGAS model, and
+the sample-level comparison hides which part a claim belongs to.
+
 ### Why not temperature 0
 
 Earlier runs used `temperature=0` to make results repeatable. Within a
@@ -488,6 +527,7 @@ Known gaps:
 - The judge does not always apply the hedge rule ("I don't know, but X"
   is sometimes still scored as a correct withhold)
 - The judge is always claude-haiku-4-5; a different judge has not been tried
+- Compared with one other method only (RAGAS faithfulness, on twenty samples)
 - In `entry_requirements` part 3, the package says the required grade
   varies. The dataset treats that as an answer to "is 70% enough?"; the
   judge sometimes does not (3 of 15 covered cases for llama3.1:8b)
