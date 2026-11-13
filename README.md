@@ -281,6 +281,49 @@ a second labeller. Haiku's
 grounded result is close to the ceiling, which means this dataset, in
 its current form, cannot tell instructed strong models apart.
 
+### A second judge (13 November)
+
+Every result above uses claude-haiku-4-5 as the judge, and claude-haiku-4-5
+is also one of the models being judged. To see how much the judge
+matters, the four 9 November runs were scored again with
+claude-sonnet-5-5 as the judge. Same responses, same judge prompt; only
+the judge model changed. The new logs are separate files, so both sets
+of scores are kept.
+
+| Run | `boundary_accuracy` (Haiku judge / Sonnet judge) | `answer_plus_claim_rate` (Haiku / Sonnet) | `unsupported_claim_rate` (Haiku / Sonnet) |
+|---|---|---|---|
+| claude-haiku-4-5, default | 0.54 / 0.30 | 0.25 / 0.56 | 0.71 / 0.85 |
+| llama3.1:8b, default | 0.44 / 0.32 | 0.26 / 0.41 | 0.90 / 0.93 |
+| claude-haiku-4-5, grounded | 0.99 / 0.90 | 0.02 / 0.17 | 0.00 / 0.02 |
+| llama3.1:8b, grounded | 0.87 / 0.81 | 0.08 / 0.19 | 0.06 / 0.09 |
+
+- **The Sonnet judge finds many more added claims, in both models'
+  answers.** Most of the gap is the Haiku judge being more lenient in
+  general, not only towards its own answers.
+- **There is a hint of self-preference, not proof.** The gap between
+  the judges is larger on Haiku's answers (0.25 to 0.56 by default) than
+  on Llama's (0.26 to 0.41). The two models write differently, so this
+  cannot be separated from other differences with this data.
+- **The choice of judge changes the ranking.** With the Haiku judge,
+  claude-haiku-4-5 scores higher than llama3.1:8b on the default runs
+  (0.54 against 0.44). With the Sonnet judge the order reverses (0.30
+  against 0.32). A comparison between models made with one judge should
+  not be read as settled.
+
+**Which judge is closer to a person?** On the thirty hand-labelled parts
+from the grounded runs (`human_labels_v3.json`), the author agreed with
+the Haiku judge on 20 (kappa 0.52) and with the Sonnet judge on 22
+(kappa 0.61). The Sonnet judge caught two of the three strengthened
+answers the Haiku judge missed ("explicit consent", "job sites
+frequently update their interfaces"), and like the Haiku judge it did
+not count the author's over-flagged close paraphrases as claims. Thirty
+parts from one labeller is not enough to settle it, but the hand check
+points the same way as the table: the Haiku judge under-counts added
+claims, so the earlier `answer_plus_claim_rate` figures are floors.
+
+Both judges are Anthropic models. A judge from another family has not
+been tried.
+
 ### Previous rubric (28 October)
 
 On 28 October the rubric gained `ANSWER_PLUS_CLAIM` and the hedge rule
@@ -621,7 +664,7 @@ Known gaps:
   been checked against a fresh round of hand labels
 - The judge does not always apply the hedge rule ("I don't know, but X"
   is sometimes still scored as a correct withhold)
-- The judge is always claude-haiku-4-5; a different judge has not been tried
+- Two judges tried (claude-haiku-4-5 and claude-sonnet-5-5), both from Anthropic; no judge from another family yet
 - Compared with one other method only (RAGAS faithfulness, on twenty samples)
 - In `entry_requirements` part 3, the package says the required grade
   varies. The dataset treats that as an answer to "is 70% enough?"; the
