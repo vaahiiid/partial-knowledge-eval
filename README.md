@@ -448,7 +448,7 @@ by the Sonnet judge (default) and again by the Opus judge. Figures with
 - `answer_plus_claim_rate` under `soft` is between 0.19 and 0.52 under
   both judges: lower than the default runs for every model, but for the
   three strongest models still far above their grounded runs (0.00 to
-  0.06).
+  0.04).
 
 ### Previous rubric (28 October)
 
