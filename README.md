@@ -98,7 +98,7 @@ on every run precisely so that it cannot go unnoticed.
 
 Sixty cases: ten scenarios × six knowledge packages. The first five
 scenarios (UK immigration, international education, software tooling)
-are the ones behind every result dated before 16 November; the other
+are the ones behind every result dated 15 November or earlier; the other
 five, added on 15 November from `add_scenarios_v2.py`, cover renting,
 consumer purchases, employment, driving and personal data, so that a
 result does not rest on one domain. `-T scenarios=a,b` runs only the
