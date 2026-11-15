@@ -343,6 +343,63 @@ claims, so the earlier `answer_plus_claim_rate` figures are likely underestimate
 Both judges are Anthropic models. A judge from another family has not
 been tried.
 
+### Stronger models and a third judge (15 November)
+
+Two stronger models, claude-sonnet-5-5 and claude-opus-5-5, were run on
+the same 30 cases, five samples each, with and without the grounded
+instruction. All eight runs (these four and the four from 9 November)
+were then scored by three judges: claude-haiku-4-5, claude-sonnet-5-5
+and claude-opus-5-5. Same responses and judge prompt for every judge.
+Figures with 95% intervals are in `experiments/rates_15nov.json`.
+
+`answer_plus_claim_rate` (judge: Haiku / Sonnet / Opus):
+
+| Model | default | grounded |
+|---|---|---|
+| claude-haiku-4-5 | 0.25 / 0.56 / 0.58 | 0.02 / 0.17 / 0.19 |
+| llama3.1:8b | 0.26 / 0.41 / 0.50 | 0.08 / 0.19 / 0.24 |
+| claude-sonnet-5-5 | 0.25 / 0.53 / 0.48 | 0.06 / 0.02 / 0.03 |
+| claude-opus-5-5 | 0.41 / 0.80 / 0.77 | 0.03 / 0.04 / 0.04 |
+
+`unsupported_claim_rate` (judge: Haiku / Sonnet / Opus):
+
+| Model | default | grounded |
+|---|---|---|
+| claude-haiku-4-5 | 0.71 / 0.85 / 0.86 | 0.00 / 0.02 / 0.04 |
+| llama3.1:8b | 0.90 / 0.93 / 0.93 | 0.06 / 0.09 / 0.09 |
+| claude-sonnet-5-5 | 0.81 / 0.98 / 0.98 | 0.01 / 0.06 / 0.09 |
+| claude-opus-5-5 | 0.88 / 0.98 / 0.98 | 0.01 / 0.02 / 0.06 |
+
+- **The Sonnet and Opus judges agree closely; the Haiku judge is the
+  outlier.** It finds about half as many added claims as either of the
+  other two, on every model's answers.
+- **No sign that a judge favours its own model.** The Sonnet judge gives
+  Sonnet's default answers 0.53 and the Opus judge gives them 0.48; the
+  Opus judge gives Opus's default answers 0.77 and the Sonnet judge 0.80.
+- **Without the instruction, the stronger models are no better.** Under
+  the Sonnet and Opus judges they fill 0.98 of gaps, against 0.85 to
+  0.93 for the smaller models, and claude-opus-5-5 adds claims to
+  covered parts most often under every judge. Under the
+  Opus judge, claude-sonnet-5-5 scores higher than claude-opus-5-5 in
+  default `boundary_accuracy` by 0.16 (paired interval +0.09 to +0.23),
+  and the ordering is the same under the other two judges.
+- **With the instruction, the stronger models add far fewer claims**
+  (0.02 to 0.04 under the Sonnet and Opus judges) than claude-haiku-4-5
+  and llama3.1:8b (0.17 to 0.24).
+- **The Haiku-versus-Llama comparison stays a tie under the third
+  judge.** With the Opus judge the default `boundary_accuracy`
+  difference is +0.01 (-0.08 to +0.11), as with the Sonnet judge. Only
+  the Haiku judge separated them.
+- **Hand check.** On the same thirty hand-labelled parts, the Opus judge
+  agreed with the author on 22 (kappa 0.61), the same as the Sonnet
+  judge. Of the eight parts the author marked `ANSWER_PLUS_CLAIM`, it
+  agreed on three, so this verdict remains the hardest to apply.
+
+Caveats: in the Sonnet and Opus runs the default judge is also one of
+the models being judged; the cross-judge figures above are the check on
+that. All three judges are Anthropic models, and every figure rests on
+30 cases.
+
 ### Previous rubric (28 October)
 
 On 28 October the rubric gained `ANSWER_PLUS_CLAIM` and the hedge rule
