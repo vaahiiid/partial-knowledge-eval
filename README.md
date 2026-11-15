@@ -416,6 +416,39 @@ the models being judged; the cross-judge figures above are the check on
 that. All three judges are Anthropic models, and every figure rests on
 30 cases.
 
+### Which half of the instruction does the work (15 November)
+
+The grounded instruction says two things: answer only from the material,
+and say so when it does not cover a part. A third setting, `soft`, keeps
+only the first idea: "Base your answer on the reference material
+above." Five models were run with it, five samples per case, and scored
+by the Sonnet judge (default) and again by the Opus judge. Figures with
+95% intervals are in `experiments/rates_15nov_soft.json`.
+
+`unsupported_claim_rate` (Sonnet judge; Opus judge in brackets for `soft`):
+
+| Model | default | soft | grounded |
+|---|---|---|---|
+| claude-haiku-4-5 | 0.85 | 0.45 (0.49) | 0.02 |
+| llama3.1:8b | 0.93 | 0.83 (0.83) | 0.09 |
+| claude-sonnet-5-5 | 0.98 | 0.60 (0.65) | 0.06 |
+| claude-opus-5-5 | 0.98 | 0.96 (0.96) | 0.02 |
+| claude-fable-5-2 | 0.99 | 0.75 (0.77) | 0.01 |
+
+- **Telling a model to base its answer on the material is not enough.**
+  It cuts gap-filling for some models and barely touches others:
+  claude-opus-5-5 fills 0.96 of gaps with the soft instruction and 0.02
+  with the full one.
+- **Most of the effect comes from the second half**, the explicit
+  permission to say that a part is not covered.
+- The soft-instruction intervals are wide (for claude-sonnet-5-5, 0.42
+  to 0.76), so the ordering between models under `soft` is not
+  reliable; the gap between `soft` and `grounded` is far outside the
+  intervals for every model.
+- `answer_plus_claim_rate` under `soft` stays between 0.19 and 0.52
+  under both judges, much closer to the default runs than to the
+  grounded ones.
+
 ### Previous rubric (28 October)
 
 On 28 October the rubric gained `ANSWER_PLUS_CLAIM` and the hedge rule
