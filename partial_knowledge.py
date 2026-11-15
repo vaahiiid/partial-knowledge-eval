@@ -391,14 +391,16 @@ def repeated(dataset, repeats: int) -> MemoryDataset:
 
 @task
 def partial_knowledge(
-    judge: str | None = "anthropic/claude-haiku-4-5-20251001",
+    judge: str | None = "anthropic/claude-sonnet-5-5",
     repeats: int = 1,
     instruction: str = "default",
 ) -> Task:
     """Partial-knowledge disclosure evaluation.
 
     Args:
-        judge: model used to classify how each part was handled
+        judge: model used to classify how each part was handled.
+            claude-sonnet-5-5 from 15 November 2026; earlier results
+            used claude-haiku-4-5, which missed many added claims.
         repeats: samples per case. Runs at the default temperature, so
             repeats estimate a real rate. temperature=0 was tried and
             dropped: runs within a day agreed, but the dominant answer

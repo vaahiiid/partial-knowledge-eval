@@ -138,10 +138,13 @@ export ANTHROPIC_API_KEY=...
 uv run inspect eval partial_knowledge.py --model anthropic/claude-haiku-4-5-20251001
 ```
 
-The judge model defaults to Haiku and can be overridden:
+The judge model defaults to claude-sonnet-5-5. Until 15 November it
+was claude-haiku-4-5; the results below say which judge they used. The
+Sonnet judge agreed more often with hand labels and caught many more
+added claims (see "A second judge" below). It can be overridden:
 
 ```bash
-uv run inspect eval partial_knowledge.py -T judge=anthropic/claude-sonnet-4-5-20250929
+uv run inspect eval partial_knowledge.py -T judge=anthropic/claude-haiku-4-5-20251001
 ```
 
 Each case can be sampled several times. Use this for any figure you
