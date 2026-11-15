@@ -31,7 +31,8 @@ def part_rows(path: str) -> tuple[str, dict[str, list[tuple[str, str]]]]:
         verdicts = meta.get("verdicts") or []
         expected = meta.get("expected") or []
         for v, e in zip(verdicts, expected):
-            by_case[str(s.id)].append((v, e))
+            # With epochs, sample ids carry a "__N" suffix; cluster on the case.
+            by_case[str(s.id).split("__")[0]].append((v, e))
     return log.eval.model, dict(by_case)
 
 
