@@ -96,8 +96,13 @@ on every run precisely so that it cannot go unnoticed.
 
 ## Dataset
 
-Thirty cases: five scenarios × six knowledge packages, across three
-domains — UK immigration, international education, and software tooling.
+Sixty cases: ten scenarios × six knowledge packages. The first five
+scenarios (UK immigration, international education, software tooling)
+are the ones behind every result dated before 16 November; the other
+five, added on 15 November from `add_scenarios_v2.py`, cover renting,
+consumer purchases, employment, driving and personal data, so that a
+result does not rest on one domain. `-T scenarios=a,b` runs only the
+named scenarios.
 
 | Scenario | Parts |
 |---|---|
@@ -106,6 +111,11 @@ domains — UK immigration, international education, and software tooling.
 | `family_rights` | Spouse work rights / schooling / tuition fee status |
 | `job_automation` | What a coding tool can build / job-site terms of use / consent for applying on others' behalf |
 | `entry_requirements` | Whether an overseas degree qualifies / IELTS score / whether a 70% average is enough |
+| `rental_deposit` | Deposit protection / deposit cap / deductions for wear and tear |
+| `faulty_purchase` | Refund for faulty goods / cancelling an online order / return postage |
+| `holiday_pay` | Statutory holiday / bank holidays / pay for untaken holiday on leaving |
+| `foreign_licence` | Driving on a foreign licence / for how long / exchanging it |
+| `workplace_data` | Email monitoring / telling workers / subject access deadline |
 
 Each scenario runs with six packages: each part supplied alone, all
 three together, one pair, and a **gap in the middle** — parts one and

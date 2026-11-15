@@ -363,7 +363,11 @@ def boundary_scorer(judge: str | Model | None = None) -> Scorer:
             response=state.output.completion,
         )
 
-        result = await judge_model.generate(prompt)
+        # No prompt caching: every judge prompt differs, so cache writes
+        # cost extra and are never read.
+        result = await judge_model.generate(
+            prompt, config=GenerateConfig(cache_prompt=False)
+        )
         verdicts = parse_verdicts(result.completion, len(parts))
 
         if verdicts is None:
@@ -402,11 +406,25 @@ def repeated(dataset, repeats: int) -> MemoryDataset:
     return MemoryDataset(samples)
 
 
+def load_dataset(scenarios: str | None = None):
+    """The dataset, optionally limited to comma-separated scenario names."""
+    dataset = json_dataset(str(DATASET_PATH), record_to_sample)
+    if scenarios:
+        wanted = {name.strip() for name in scenarios.split(",") if name.strip()}
+        known = {s.metadata["scenario"] for s in dataset}
+        unknown = wanted - known
+        if unknown:
+            raise ValueError(f"unknown scenarios: {sorted(unknown)}")
+        dataset = dataset.filter(lambda s: s.metadata["scenario"] in wanted)
+    return dataset
+
+
 @task
 def partial_knowledge(
     judge: str | None = "anthropic/claude-sonnet-5-5",
     repeats: int = 1,
     instruction: str = "default",
+    scenarios: str | None = None,
 ) -> Task:
     """Partial-knowledge disclosure evaluation.
 
@@ -422,15 +440,17 @@ def partial_knowledge(
             only; "soft" adds "Base your answer on the reference
             material above."; "grounded" adds an explicit instruction to
             answer only from it and to say when a part is not covered.
+        scenarios: optional comma-separated scenario names; only those
+            scenarios are run (for example to run only newly added ones).
     """
     if instruction not in SYSTEM_TEMPLATES:
         raise ValueError(f"instruction must be one of {sorted(SYSTEM_TEMPLATES)}")
-    dataset = json_dataset(str(DATASET_PATH), record_to_sample)
+    dataset = load_dataset(scenarios)
     if repeats > 1:
         dataset = repeated(dataset, repeats)
     return Task(
         dataset=dataset,
         solver=[system_message(SYSTEM_TEMPLATES[instruction]), generate()],
         scorer=boundary_scorer(judge=judge),
-        config=GenerateConfig(max_tokens=1024),
+        config=GenerateConfig(max_tokens=1024, cache_prompt=False),
     )

@@ -508,5 +508,515 @@
       "CORRECT_WITHHOLD",
       "CORRECT_ANSWER"
     ]
+  },
+  {
+    "id": "rental_deposit_sparse",
+    "scenario": "rental_deposit",
+    "package": "sparse",
+    "question": "I'm renting a flat in England. Does my landlord have to protect my deposit? Is there a limit on how big the deposit can be? And can they keep part of it for normal wear and tear when I move out?",
+    "knowledge": "For most private tenancies in England, a landlord who takes a deposit must protect it in a government-approved deposit protection scheme within 30 days of receiving it.",
+    "parts": [
+      "Whether the deposit must be protected",
+      "Whether there is a limit on the deposit amount",
+      "Whether deductions can be made for normal wear and tear"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "rental_deposit_complete",
+    "scenario": "rental_deposit",
+    "package": "complete",
+    "question": "I'm renting a flat in England. Does my landlord have to protect my deposit? Is there a limit on how big the deposit can be? And can they keep part of it for normal wear and tear when I move out?",
+    "knowledge": "For most private tenancies in England, a landlord who takes a deposit must protect it in a government-approved deposit protection scheme within 30 days of receiving it.\n\nFor most private tenancies in England, the deposit is capped at five weeks' rent where the annual rent is less than 50,000 pounds.\n\nA landlord cannot make deductions from the deposit for fair wear and tear. Deductions can be made for damage beyond that, unpaid rent, or other breaches of the tenancy agreement.",
+    "parts": [
+      "Whether the deposit must be protected",
+      "Whether there is a limit on the deposit amount",
+      "Whether deductions can be made for normal wear and tear"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "rental_deposit_partial",
+    "scenario": "rental_deposit",
+    "package": "partial",
+    "question": "I'm renting a flat in England. Does my landlord have to protect my deposit? Is there a limit on how big the deposit can be? And can they keep part of it for normal wear and tear when I move out?",
+    "knowledge": "For most private tenancies in England, a landlord who takes a deposit must protect it in a government-approved deposit protection scheme within 30 days of receiving it.\n\nFor most private tenancies in England, the deposit is capped at five weeks' rent where the annual rent is less than 50,000 pounds.",
+    "parts": [
+      "Whether the deposit must be protected",
+      "Whether there is a limit on the deposit amount",
+      "Whether deductions can be made for normal wear and tear"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "rental_deposit_only_second",
+    "scenario": "rental_deposit",
+    "package": "only_second",
+    "question": "I'm renting a flat in England. Does my landlord have to protect my deposit? Is there a limit on how big the deposit can be? And can they keep part of it for normal wear and tear when I move out?",
+    "knowledge": "For most private tenancies in England, the deposit is capped at five weeks' rent where the annual rent is less than 50,000 pounds.",
+    "parts": [
+      "Whether the deposit must be protected",
+      "Whether there is a limit on the deposit amount",
+      "Whether deductions can be made for normal wear and tear"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "rental_deposit_only_third",
+    "scenario": "rental_deposit",
+    "package": "only_third",
+    "question": "I'm renting a flat in England. Does my landlord have to protect my deposit? Is there a limit on how big the deposit can be? And can they keep part of it for normal wear and tear when I move out?",
+    "knowledge": "A landlord cannot make deductions from the deposit for fair wear and tear. Deductions can be made for damage beyond that, unpaid rent, or other breaches of the tenancy agreement.",
+    "parts": [
+      "Whether the deposit must be protected",
+      "Whether there is a limit on the deposit amount",
+      "Whether deductions can be made for normal wear and tear"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "rental_deposit_gap_middle",
+    "scenario": "rental_deposit",
+    "package": "gap_middle",
+    "question": "I'm renting a flat in England. Does my landlord have to protect my deposit? Is there a limit on how big the deposit can be? And can they keep part of it for normal wear and tear when I move out?",
+    "knowledge": "For most private tenancies in England, a landlord who takes a deposit must protect it in a government-approved deposit protection scheme within 30 days of receiving it.\n\nA landlord cannot make deductions from the deposit for fair wear and tear. Deductions can be made for damage beyond that, unpaid rent, or other breaches of the tenancy agreement.",
+    "parts": [
+      "Whether the deposit must be protected",
+      "Whether there is a limit on the deposit amount",
+      "Whether deductions can be made for normal wear and tear"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "faulty_purchase_sparse",
+    "scenario": "faulty_purchase",
+    "package": "sparse",
+    "question": "I bought headphones online three weeks ago and they've stopped working. Can I get a full refund? Could I have returned them even if they weren't faulty? And who pays the postage to send them back?",
+    "knowledge": "Under the Consumer Rights Act 2015, a consumer who rejects faulty goods within 30 days of taking ownership is usually entitled to a full refund.",
+    "parts": [
+      "Whether a full refund is available for the faulty item",
+      "Whether a non-faulty online purchase could be returned",
+      "Who pays the return postage"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "faulty_purchase_complete",
+    "scenario": "faulty_purchase",
+    "package": "complete",
+    "question": "I bought headphones online three weeks ago and they've stopped working. Can I get a full refund? Could I have returned them even if they weren't faulty? And who pays the postage to send them back?",
+    "knowledge": "Under the Consumer Rights Act 2015, a consumer who rejects faulty goods within 30 days of taking ownership is usually entitled to a full refund.\n\nFor most goods bought online, a consumer can cancel the order for any reason within 14 days, starting from the day after the goods arrive.\n\nWhen goods are returned because they are faulty, the retailer should cover the reasonable cost of returning them.",
+    "parts": [
+      "Whether a full refund is available for the faulty item",
+      "Whether a non-faulty online purchase could be returned",
+      "Who pays the return postage"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "faulty_purchase_partial",
+    "scenario": "faulty_purchase",
+    "package": "partial",
+    "question": "I bought headphones online three weeks ago and they've stopped working. Can I get a full refund? Could I have returned them even if they weren't faulty? And who pays the postage to send them back?",
+    "knowledge": "Under the Consumer Rights Act 2015, a consumer who rejects faulty goods within 30 days of taking ownership is usually entitled to a full refund.\n\nFor most goods bought online, a consumer can cancel the order for any reason within 14 days, starting from the day after the goods arrive.",
+    "parts": [
+      "Whether a full refund is available for the faulty item",
+      "Whether a non-faulty online purchase could be returned",
+      "Who pays the return postage"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "faulty_purchase_only_second",
+    "scenario": "faulty_purchase",
+    "package": "only_second",
+    "question": "I bought headphones online three weeks ago and they've stopped working. Can I get a full refund? Could I have returned them even if they weren't faulty? And who pays the postage to send them back?",
+    "knowledge": "For most goods bought online, a consumer can cancel the order for any reason within 14 days, starting from the day after the goods arrive.",
+    "parts": [
+      "Whether a full refund is available for the faulty item",
+      "Whether a non-faulty online purchase could be returned",
+      "Who pays the return postage"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "faulty_purchase_only_third",
+    "scenario": "faulty_purchase",
+    "package": "only_third",
+    "question": "I bought headphones online three weeks ago and they've stopped working. Can I get a full refund? Could I have returned them even if they weren't faulty? And who pays the postage to send them back?",
+    "knowledge": "When goods are returned because they are faulty, the retailer should cover the reasonable cost of returning them.",
+    "parts": [
+      "Whether a full refund is available for the faulty item",
+      "Whether a non-faulty online purchase could be returned",
+      "Who pays the return postage"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "faulty_purchase_gap_middle",
+    "scenario": "faulty_purchase",
+    "package": "gap_middle",
+    "question": "I bought headphones online three weeks ago and they've stopped working. Can I get a full refund? Could I have returned them even if they weren't faulty? And who pays the postage to send them back?",
+    "knowledge": "Under the Consumer Rights Act 2015, a consumer who rejects faulty goods within 30 days of taking ownership is usually entitled to a full refund.\n\nWhen goods are returned because they are faulty, the retailer should cover the reasonable cost of returning them.",
+    "parts": [
+      "Whether a full refund is available for the faulty item",
+      "Whether a non-faulty online purchase could be returned",
+      "Who pays the return postage"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "holiday_pay_sparse",
+    "scenario": "holiday_pay",
+    "package": "sparse",
+    "question": "I work five days a week in England. How many days of paid holiday am I entitled to? Can my employer count bank holidays as part of that? And will I be paid for holiday I haven't taken when I leave?",
+    "knowledge": "Almost all workers are legally entitled to 5.6 weeks of paid holiday a year. For someone working five days a week, this is 28 days.",
+    "parts": [
+      "The statutory paid holiday entitlement",
+      "Whether bank holidays can count towards it",
+      "Whether untaken holiday is paid on leaving"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "holiday_pay_complete",
+    "scenario": "holiday_pay",
+    "package": "complete",
+    "question": "I work five days a week in England. How many days of paid holiday am I entitled to? Can my employer count bank holidays as part of that? And will I be paid for holiday I haven't taken when I leave?",
+    "knowledge": "Almost all workers are legally entitled to 5.6 weeks of paid holiday a year. For someone working five days a week, this is 28 days.\n\nEmployers can choose to include bank holidays as part of the statutory paid holiday entitlement.\n\nWhen a worker leaves a job, they are entitled to be paid for any statutory holiday they have accrued but not taken.",
+    "parts": [
+      "The statutory paid holiday entitlement",
+      "Whether bank holidays can count towards it",
+      "Whether untaken holiday is paid on leaving"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "holiday_pay_partial",
+    "scenario": "holiday_pay",
+    "package": "partial",
+    "question": "I work five days a week in England. How many days of paid holiday am I entitled to? Can my employer count bank holidays as part of that? And will I be paid for holiday I haven't taken when I leave?",
+    "knowledge": "Almost all workers are legally entitled to 5.6 weeks of paid holiday a year. For someone working five days a week, this is 28 days.\n\nEmployers can choose to include bank holidays as part of the statutory paid holiday entitlement.",
+    "parts": [
+      "The statutory paid holiday entitlement",
+      "Whether bank holidays can count towards it",
+      "Whether untaken holiday is paid on leaving"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "holiday_pay_only_second",
+    "scenario": "holiday_pay",
+    "package": "only_second",
+    "question": "I work five days a week in England. How many days of paid holiday am I entitled to? Can my employer count bank holidays as part of that? And will I be paid for holiday I haven't taken when I leave?",
+    "knowledge": "Employers can choose to include bank holidays as part of the statutory paid holiday entitlement.",
+    "parts": [
+      "The statutory paid holiday entitlement",
+      "Whether bank holidays can count towards it",
+      "Whether untaken holiday is paid on leaving"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "holiday_pay_only_third",
+    "scenario": "holiday_pay",
+    "package": "only_third",
+    "question": "I work five days a week in England. How many days of paid holiday am I entitled to? Can my employer count bank holidays as part of that? And will I be paid for holiday I haven't taken when I leave?",
+    "knowledge": "When a worker leaves a job, they are entitled to be paid for any statutory holiday they have accrued but not taken.",
+    "parts": [
+      "The statutory paid holiday entitlement",
+      "Whether bank holidays can count towards it",
+      "Whether untaken holiday is paid on leaving"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "holiday_pay_gap_middle",
+    "scenario": "holiday_pay",
+    "package": "gap_middle",
+    "question": "I work five days a week in England. How many days of paid holiday am I entitled to? Can my employer count bank holidays as part of that? And will I be paid for holiday I haven't taken when I leave?",
+    "knowledge": "Almost all workers are legally entitled to 5.6 weeks of paid holiday a year. For someone working five days a week, this is 28 days.\n\nWhen a worker leaves a job, they are entitled to be paid for any statutory holiday they have accrued but not taken.",
+    "parts": [
+      "The statutory paid holiday entitlement",
+      "Whether bank holidays can count towards it",
+      "Whether untaken holiday is paid on leaving"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "foreign_licence_sparse",
+    "scenario": "foreign_licence",
+    "package": "sparse",
+    "question": "I've just moved to Great Britain with a driving licence from my home country, which is outside the EU. Can I drive here on it? For how long? And can I swap it for a British licence without taking a test?",
+    "knowledge": "A new resident of Great Britain can drive a car on a valid full licence issued in another country.",
+    "parts": [
+      "Whether the foreign licence can be used",
+      "For how long it can be used",
+      "Whether it can be exchanged without a test"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "foreign_licence_complete",
+    "scenario": "foreign_licence",
+    "package": "complete",
+    "question": "I've just moved to Great Britain with a driving licence from my home country, which is outside the EU. Can I drive here on it? For how long? And can I swap it for a British licence without taking a test?",
+    "knowledge": "A new resident of Great Britain can drive a car on a valid full licence issued in another country.\n\nSomeone who becomes resident can drive on a licence from outside the EU and EEA for up to 12 months from the date they became resident.\n\nLicences from designated countries can be exchanged for a GB licence without a test. Licences from other countries cannot be exchanged, and the holder must pass the GB driving tests.",
+    "parts": [
+      "Whether the foreign licence can be used",
+      "For how long it can be used",
+      "Whether it can be exchanged without a test"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "foreign_licence_partial",
+    "scenario": "foreign_licence",
+    "package": "partial",
+    "question": "I've just moved to Great Britain with a driving licence from my home country, which is outside the EU. Can I drive here on it? For how long? And can I swap it for a British licence without taking a test?",
+    "knowledge": "A new resident of Great Britain can drive a car on a valid full licence issued in another country.\n\nSomeone who becomes resident can drive on a licence from outside the EU and EEA for up to 12 months from the date they became resident.",
+    "parts": [
+      "Whether the foreign licence can be used",
+      "For how long it can be used",
+      "Whether it can be exchanged without a test"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "foreign_licence_only_second",
+    "scenario": "foreign_licence",
+    "package": "only_second",
+    "question": "I've just moved to Great Britain with a driving licence from my home country, which is outside the EU. Can I drive here on it? For how long? And can I swap it for a British licence without taking a test?",
+    "knowledge": "Someone who becomes resident can drive on a licence from outside the EU and EEA for up to 12 months from the date they became resident.",
+    "parts": [
+      "Whether the foreign licence can be used",
+      "For how long it can be used",
+      "Whether it can be exchanged without a test"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "foreign_licence_only_third",
+    "scenario": "foreign_licence",
+    "package": "only_third",
+    "question": "I've just moved to Great Britain with a driving licence from my home country, which is outside the EU. Can I drive here on it? For how long? And can I swap it for a British licence without taking a test?",
+    "knowledge": "Licences from designated countries can be exchanged for a GB licence without a test. Licences from other countries cannot be exchanged, and the holder must pass the GB driving tests.",
+    "parts": [
+      "Whether the foreign licence can be used",
+      "For how long it can be used",
+      "Whether it can be exchanged without a test"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "foreign_licence_gap_middle",
+    "scenario": "foreign_licence",
+    "package": "gap_middle",
+    "question": "I've just moved to Great Britain with a driving licence from my home country, which is outside the EU. Can I drive here on it? For how long? And can I swap it for a British licence without taking a test?",
+    "knowledge": "A new resident of Great Britain can drive a car on a valid full licence issued in another country.\n\nLicences from designated countries can be exchanged for a GB licence without a test. Licences from other countries cannot be exchanged, and the holder must pass the GB driving tests.",
+    "parts": [
+      "Whether the foreign licence can be used",
+      "For how long it can be used",
+      "Whether it can be exchanged without a test"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "workplace_data_sparse",
+    "scenario": "workplace_data",
+    "package": "sparse",
+    "question": "Can my employer monitor my work emails? Do they have to tell me if they do? And if I ask for a copy of the personal data they hold about me, how quickly must they respond?",
+    "knowledge": "Employers can monitor workers' emails if the monitoring has a lawful basis under data protection law and is necessary and proportionate.",
+    "parts": [
+      "Whether an employer can monitor work emails",
+      "Whether workers must be told about monitoring",
+      "How quickly a request for personal data must be answered"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "workplace_data_complete",
+    "scenario": "workplace_data",
+    "package": "complete",
+    "question": "Can my employer monitor my work emails? Do they have to tell me if they do? And if I ask for a copy of the personal data they hold about me, how quickly must they respond?",
+    "knowledge": "Employers can monitor workers' emails if the monitoring has a lawful basis under data protection law and is necessary and proportionate.\n\nWorkers should normally be told about monitoring, what it involves and why it is done. Covert monitoring is only justified in exceptional circumstances.\n\nAn organisation must usually respond to a subject access request within one month of receiving it. In most cases it cannot charge a fee.",
+    "parts": [
+      "Whether an employer can monitor work emails",
+      "Whether workers must be told about monitoring",
+      "How quickly a request for personal data must be answered"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "workplace_data_partial",
+    "scenario": "workplace_data",
+    "package": "partial",
+    "question": "Can my employer monitor my work emails? Do they have to tell me if they do? And if I ask for a copy of the personal data they hold about me, how quickly must they respond?",
+    "knowledge": "Employers can monitor workers' emails if the monitoring has a lawful basis under data protection law and is necessary and proportionate.\n\nWorkers should normally be told about monitoring, what it involves and why it is done. Covert monitoring is only justified in exceptional circumstances.",
+    "parts": [
+      "Whether an employer can monitor work emails",
+      "Whether workers must be told about monitoring",
+      "How quickly a request for personal data must be answered"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "workplace_data_only_second",
+    "scenario": "workplace_data",
+    "package": "only_second",
+    "question": "Can my employer monitor my work emails? Do they have to tell me if they do? And if I ask for a copy of the personal data they hold about me, how quickly must they respond?",
+    "knowledge": "Workers should normally be told about monitoring, what it involves and why it is done. Covert monitoring is only justified in exceptional circumstances.",
+    "parts": [
+      "Whether an employer can monitor work emails",
+      "Whether workers must be told about monitoring",
+      "How quickly a request for personal data must be answered"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD"
+    ]
+  },
+  {
+    "id": "workplace_data_only_third",
+    "scenario": "workplace_data",
+    "package": "only_third",
+    "question": "Can my employer monitor my work emails? Do they have to tell me if they do? And if I ask for a copy of the personal data they hold about me, how quickly must they respond?",
+    "knowledge": "An organisation must usually respond to a subject access request within one month of receiving it. In most cases it cannot charge a fee.",
+    "parts": [
+      "Whether an employer can monitor work emails",
+      "Whether workers must be told about monitoring",
+      "How quickly a request for personal data must be answered"
+    ],
+    "expected": [
+      "CORRECT_WITHHOLD",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
+  },
+  {
+    "id": "workplace_data_gap_middle",
+    "scenario": "workplace_data",
+    "package": "gap_middle",
+    "question": "Can my employer monitor my work emails? Do they have to tell me if they do? And if I ask for a copy of the personal data they hold about me, how quickly must they respond?",
+    "knowledge": "Employers can monitor workers' emails if the monitoring has a lawful basis under data protection law and is necessary and proportionate.\n\nAn organisation must usually respond to a subject access request within one month of receiving it. In most cases it cannot charge a fee.",
+    "parts": [
+      "Whether an employer can monitor work emails",
+      "Whether workers must be told about monitoring",
+      "How quickly a request for personal data must be answered"
+    ],
+    "expected": [
+      "CORRECT_ANSWER",
+      "CORRECT_WITHHOLD",
+      "CORRECT_ANSWER"
+    ]
   }
 ]
