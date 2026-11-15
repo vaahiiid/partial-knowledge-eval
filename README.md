@@ -9,6 +9,10 @@ Someone asks three things at once, and a retrieval system returns
 material covering one of them. What the system does with the other two
 is the thing this eval measures.
 
+A short write-up of the method and the results so far is in
+[`paper/main.pdf`](paper/main.pdf) (LaTeX source alongside). The
+version it describes is tagged `paper-v1`.
+
 ## What it measures
 
 Not whether the answer is correct — that is well covered elsewhere.
