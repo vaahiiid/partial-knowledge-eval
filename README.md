@@ -345,12 +345,14 @@ been tried.
 
 ### Stronger models and a third judge (15 November)
 
-Two stronger models, claude-sonnet-5-5 and claude-opus-5-5, were run on
-the same 30 cases, five samples each, with and without the grounded
-instruction. All eight runs (these four and the four from 9 November)
-were then scored by three judges: claude-haiku-4-5, claude-sonnet-5-5
+Four stronger models, claude-sonnet-5-5, claude-opus-5-5,
+claude-fable-5-1 and claude-fable-5-2, were run on the same 30 cases,
+five samples each, with and without the grounded instruction. All
+twelve runs (these eight and the four from 9 November) were then scored
+by three judges: claude-haiku-4-5, claude-sonnet-5-5
 and claude-opus-5-5. Same responses and judge prompt for every judge.
-Figures with 95% intervals are in `experiments/rates_15nov.json`.
+Figures with 95% intervals are in `experiments/rates_15nov.json` and
+`experiments/rates_15nov_fable.json`.
 
 `answer_plus_claim_rate` (judge: Haiku / Sonnet / Opus):
 
@@ -360,6 +362,8 @@ Figures with 95% intervals are in `experiments/rates_15nov.json`.
 | llama3.1:8b | 0.26 / 0.41 / 0.50 | 0.08 / 0.19 / 0.24 |
 | claude-sonnet-5-5 | 0.25 / 0.53 / 0.48 | 0.06 / 0.02 / 0.03 |
 | claude-opus-5-5 | 0.41 / 0.80 / 0.77 | 0.03 / 0.04 / 0.04 |
+| claude-fable-5-1 | 0.18 / 0.56 / 0.58 | 0.04 / 0.05 / 0.06 |
+| claude-fable-5-2 | 0.16 / 0.40 / 0.41 | 0.02 / 0.00 / 0.00 |
 
 `unsupported_claim_rate` (judge: Haiku / Sonnet / Opus):
 
@@ -369,23 +373,30 @@ Figures with 95% intervals are in `experiments/rates_15nov.json`.
 | llama3.1:8b | 0.90 / 0.93 / 0.93 | 0.06 / 0.09 / 0.09 |
 | claude-sonnet-5-5 | 0.81 / 0.98 / 0.98 | 0.01 / 0.06 / 0.09 |
 | claude-opus-5-5 | 0.88 / 0.98 / 0.98 | 0.01 / 0.02 / 0.06 |
+| claude-fable-5-1 | 0.60 / 0.90 / 0.90 | 0.00 / 0.03 / 0.06 |
+| claude-fable-5-2 | 0.90 / 0.99 / 0.99 | 0.00 / 0.01 / 0.02 |
 
 - **The Sonnet and Opus judges agree closely; the Haiku judge is the
   outlier.** It finds about half as many added claims as either of the
-  other two, on every model's answers.
+  other two on most models' answers, and about a third as many on
+  the two Fable models'.
 - **No sign that a judge favours its own model.** The Sonnet judge gives
   Sonnet's default answers 0.53 and the Opus judge gives them 0.48; the
   Opus judge gives Opus's default answers 0.77 and the Sonnet judge 0.80.
 - **Without the instruction, the stronger models are no better.** Under
-  the Sonnet and Opus judges they fill 0.98 of gaps, against 0.85 to
-  0.93 for the smaller models, and claude-opus-5-5 adds claims to
-  covered parts most often under every judge. Under the
+  the Sonnet and Opus judges they fill 0.90 to 0.99 of gaps, against
+  0.85 to 0.93 for the smaller models, and claude-opus-5-5 adds claims
+  to covered parts most often under every judge. Under the
   Opus judge, claude-sonnet-5-5 scores higher than claude-opus-5-5 in
   default `boundary_accuracy` by 0.16 (paired interval +0.09 to +0.23),
   and the ordering is the same under the other two judges.
 - **With the instruction, the stronger models add far fewer claims**
-  (0.02 to 0.04 under the Sonnet and Opus judges) than claude-haiku-4-5
-  and llama3.1:8b (0.17 to 0.24).
+  (0.00 to 0.06 under the Sonnet and Opus judges) than claude-haiku-4-5
+  and llama3.1:8b (0.17 to 0.24). claude-fable-5-2 is the best of all
+  runs: one added claim in 250 covered parts under the Sonnet judge,
+  none under the Opus judge. Under the Opus judge its grounded
+  `boundary_accuracy` is higher than claude-haiku-4-5's by 0.11 (paired
+  interval +0.06 to +0.17).
 - **The Haiku-versus-Llama comparison stays a tie under the third
   judge.** With the Opus judge the default `boundary_accuracy`
   difference is +0.01 (-0.08 to +0.11), as with the Sonnet judge. Only
@@ -394,6 +405,11 @@ Figures with 95% intervals are in `experiments/rates_15nov.json`.
   agreed with the author on 22 (kappa 0.61), the same as the Sonnet
   judge. Of the eight parts the author marked `ANSWER_PLUS_CLAIM`, it
   agreed on three, so this verdict remains the hardest to apply.
+
+- **One false refusal.** claude-fable-5-1 declined one sample (a
+  family-rights question) through a safety classifier that labelled it
+  cyber-related. The empty answer was scored as withholding, which is
+  the single `unnecessary_withhold` in that run.
 
 Caveats: in the Sonnet and Opus runs the default judge is also one of
 the models being judged; the cross-judge figures above are the check on
