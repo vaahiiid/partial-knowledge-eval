@@ -408,8 +408,8 @@ Figures with 95% intervals are in `experiments/rates_15nov.json` and
 
 - **One false refusal.** claude-fable-5-1 declined one sample (a
   family-rights question) through a safety classifier that labelled it
-  cyber-related. The empty answer was scored as withholding, which is
-  the single `unnecessary_withhold` in that run.
+  cyber-related. The sample stays in the run and its empty answer is
+  judged like any other, so it can affect that run's figures slightly.
 
 Caveats: in the Sonnet and Opus runs the default judge is also one of
 the models being judged; the cross-judge figures above are the check on
