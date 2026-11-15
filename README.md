@@ -275,7 +275,7 @@ assistant), the labels stay as recorded but the reading is:
 So under the grounded instruction the models rarely add new facts, but
 they sometimes strengthen what the material says, most often when they
 compress it into a yes or no. The judge misses many of these, so the
-grounded `answer_plus_claim_rate` (0.02 and 0.08) is a floor. The
+grounded `answer_plus_claim_rate` (0.02 and 0.08) is likely an underestimate. The
 author also over-flags close paraphrases, which is one more reason for
 a second labeller. Haiku's
 grounded result is close to the ceiling, which means this dataset, in
@@ -331,7 +331,7 @@ frequently update their interfaces"), and like the Haiku judge it did
 not count the author's over-flagged close paraphrases as claims. Thirty
 parts from one labeller is not enough to settle it, but the hand check
 points the same way as the table: the Haiku judge under-counts added
-claims, so the earlier `answer_plus_claim_rate` figures are floors.
+claims, so the earlier `answer_plus_claim_rate` figures are likely underestimates.
 
 Both judges are Anthropic models. A judge from another family has not
 been tried.
