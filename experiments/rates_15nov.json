@@ -1,0 +1,860 @@
+[
+  {
+    "log": "logs/s55_default/2026-11-15T17-40-58-00-00_partial-knowledge_FmK57JBP33ivGbWuLvYsC2.eval",
+    "model": "anthropic/claude-sonnet-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.26,
+        "ci95": [
+          0.1688888888888889,
+          0.3711111111111111
+        ],
+        "n": 117,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.975,
+        "ci95": [
+          0.9435897435897436,
+          1.0
+        ],
+        "n": 195,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.532,
+        "ci95": [
+          0.39574468085106385,
+          0.665
+        ],
+        "n": 133,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.012,
+        "ci95": [
+          0.0,
+          0.04090909090909091
+        ],
+        "n": 3,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/s55_grounded/2026-11-15T17-41-53-00-00_partial-knowledge_99W6dYd9J6A8VuxVZ6y6hU.eval",
+    "model": "anthropic/claude-sonnet-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.96,
+        "ci95": [
+          0.9377777777777778,
+          0.98
+        ],
+        "n": 432,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.055,
+        "ci95": [
+          0.017142857142857144,
+          0.10256410256410256
+        ],
+        "n": 11,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.02,
+        "ci95": [
+          0.003703703703703704,
+          0.04081632653061224
+        ],
+        "n": 5,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/o55_default/2026-11-15T17-42-18-00-00_partial-knowledge_ajN3L487U4oBdppXyFi4jW.eval",
+    "model": "anthropic/claude-opus-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.11333333333333333,
+        "ci95": [
+          0.05555555555555555,
+          0.18666666666666668
+        ],
+        "n": 51,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.975,
+        "ci95": [
+          0.9458333333333333,
+          1.0
+        ],
+        "n": 195,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.796,
+        "ci95": [
+          0.6847457627118644,
+          0.8956521739130435
+        ],
+        "n": 199,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.016,
+        "ci95": [
+          0.0,
+          0.04583333333333333
+        ],
+        "n": 4,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/o55_grounded/2026-11-15T17-43-05-00-00_partial-knowledge_me6WQj8oLhJqs9yUy6zRjf.eval",
+    "model": "anthropic/claude-opus-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.9666666666666667,
+        "ci95": [
+          0.9466666666666667,
+          0.9844444444444445
+        ],
+        "n": 435,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.02,
+        "ci95": [
+          0.0,
+          0.044444444444444446
+        ],
+        "n": 4,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.04,
+        "ci95": [
+          0.013043478260869565,
+          0.07391304347826087
+        ],
+        "n": 10,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_haiku_default.eval",
+    "model": "anthropic/claude-haiku-4-5-20251001",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.29398663697104677,
+        "ci95": [
+          0.19642857142857142,
+          0.4111111111111111
+        ],
+        "n": 132,
+        "d": 449
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.864321608040201,
+        "ci95": [
+          0.7450980392156863,
+          0.9521531100478469
+        ],
+        "n": 172,
+        "d": 199
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.576,
+        "ci95": [
+          0.4489795918367347,
+          0.7020408163265306
+        ],
+        "n": 144,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0022222222222222222,
+        "ci95": [
+          0.0,
+          0.006666666666666667
+        ],
+        "n": 1,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_haiku_grounded.eval",
+    "model": "anthropic/claude-haiku-4-5-20251001",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.88,
+        "ci95": [
+          0.8222222222222222,
+          0.9288888888888889
+        ],
+        "n": 396,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.035,
+        "ci95": [
+          0.004878048780487805,
+          0.07428571428571429
+        ],
+        "n": 7,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.188,
+        "ci95": [
+          0.10181818181818182,
+          0.2851063829787234
+        ],
+        "n": 47,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_llama_default.eval",
+    "model": "ollama/llama3.1:8b",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.2882205513784461,
+        "ci95": [
+          0.2066115702479339,
+          0.37745098039215685
+        ],
+        "n": 115,
+        "d": 399
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.9333333333333333,
+        "ci95": [
+          0.8861788617886179,
+          0.9696969696969697
+        ],
+        "n": 168,
+        "d": 180
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.502283105022831,
+        "ci95": [
+          0.4110169491525424,
+          0.6022099447513812
+        ],
+        "n": 110,
+        "d": 219
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0136986301369863,
+        "ci95": [
+          0.0,
+          0.031746031746031744
+        ],
+        "n": 3,
+        "d": 219
+      },
+      "refusal_rate": {
+        "rate": 0.11333333333333333,
+        "ci95": [
+          0.02666666666666667,
+          0.22
+        ],
+        "n": 51,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_llama_grounded.eval",
+    "model": "ollama/llama3.1:8b",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.7868480725623582,
+        "ci95": [
+          0.730593607305936,
+          0.8367816091954023
+        ],
+        "n": 347,
+        "d": 441
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.08762886597938144,
+        "ci95": [
+          0.03759398496240601,
+          0.15025906735751296
+        ],
+        "n": 17,
+        "d": 194
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.2388663967611336,
+        "ci95": [
+          0.168141592920354,
+          0.3090909090909091
+        ],
+        "n": 59,
+        "d": 247
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.06477732793522267,
+        "ci95": [
+          0.028225806451612902,
+          0.11607142857142858
+        ],
+        "n": 16,
+        "d": 247
+      },
+      "refusal_rate": {
+        "rate": 0.02,
+        "ci95": [
+          0.0,
+          0.04666666666666667
+        ],
+        "n": 9,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_opus_default.eval",
+    "model": "anthropic/claude-opus-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.12444444444444444,
+        "ci95": [
+          0.057777777777777775,
+          0.20222222222222222
+        ],
+        "n": 56,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.975,
+        "ci95": [
+          0.9458333333333333,
+          1.0
+        ],
+        "n": 195,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.768,
+        "ci95": [
+          0.6454545454545455,
+          0.8851063829787233
+        ],
+        "n": 192,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.016,
+        "ci95": [
+          0.0,
+          0.04583333333333333
+        ],
+        "n": 4,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_opus_grounded.eval",
+    "model": "anthropic/claude-opus-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.9488888888888889,
+        "ci95": [
+          0.92,
+          0.9733333333333334
+        ],
+        "n": 427,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.055,
+        "ci95": [
+          0.017142857142857144,
+          0.10285714285714286
+        ],
+        "n": 11,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.036,
+        "ci95": [
+          0.0125,
+          0.06538461538461539
+        ],
+        "n": 9,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_sonnet_default.eval",
+    "model": "anthropic/claude-sonnet-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.28,
+        "ci95": [
+          0.18222222222222223,
+          0.3977777777777778
+        ],
+        "n": 126,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.975,
+        "ci95": [
+          0.9435897435897436,
+          1.0
+        ],
+        "n": 195,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.48,
+        "ci95": [
+          0.33448275862068966,
+          0.628
+        ],
+        "n": 120,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.012,
+        "ci95": [
+          0.0,
+          0.04090909090909091
+        ],
+        "n": 3,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/opus_sonnet_grounded.eval",
+    "model": "anthropic/claude-sonnet-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.9422222222222222,
+        "ci95": [
+          0.9066666666666666,
+          0.9711111111111111
+        ],
+        "n": 424,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.085,
+        "ci95": [
+          0.03076923076923077,
+          0.15
+        ],
+        "n": 17,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.028,
+        "ci95": [
+          0.006896551724137931,
+          0.05652173913043478
+        ],
+        "n": 7,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/haiku_sonnet_default.eval",
+    "model": "anthropic/claude-sonnet-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.4866666666666667,
+        "ci95": [
+          0.37333333333333335,
+          0.6066666666666667
+        ],
+        "n": 219,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.81,
+        "ci95": [
+          0.72,
+          0.8923076923076924
+        ],
+        "n": 162,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.248,
+        "ci95": [
+          0.16,
+          0.35714285714285715
+        ],
+        "n": 62,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.012,
+        "ci95": [
+          0.0,
+          0.04090909090909091
+        ],
+        "n": 3,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/haiku_sonnet_grounded.eval",
+    "model": "anthropic/claude-sonnet-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.9619686800894854,
+        "ci95": [
+          0.9324324324324325,
+          0.9844444444444445
+        ],
+        "n": 430,
+        "d": 447
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.010101010101010102,
+        "ci95": [
+          0.0,
+          0.03314917127071823
+        ],
+        "n": 2,
+        "d": 198
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.060240963855421686,
+        "ci95": [
+          0.02197802197802198,
+          0.11065573770491803
+        ],
+        "n": 15,
+        "d": 249
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 249
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 447
+      }
+    }
+  },
+  {
+    "log": "logs/haiku_opus_default.eval",
+    "model": "anthropic/claude-opus-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.36,
+        "ci95": [
+          0.2577777777777778,
+          0.46444444444444444
+        ],
+        "n": 162,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.88,
+        "ci95": [
+          0.813953488372093,
+          0.9352941176470588
+        ],
+        "n": 176,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.412,
+        "ci95": [
+          0.2984126984126984,
+          0.5454545454545454
+        ],
+        "n": 103,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.012,
+        "ci95": [
+          0.0,
+          0.0326530612244898
+        ],
+        "n": 3,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "log": "logs/haiku_opus_grounded.eval",
+    "model": "anthropic/claude-opus-5-5",
+    "cases": 30,
+    "metrics": {
+      "boundary_accuracy": {
+        "rate": 0.98,
+        "ci95": [
+          0.9666666666666667,
+          0.9911111111111112
+        ],
+        "n": 441,
+        "d": 450
+      },
+      "unsupported_claim_rate": {
+        "rate": 0.005,
+        "ci95": [
+          0.0,
+          0.015789473684210527
+        ],
+        "n": 1,
+        "d": 200
+      },
+      "answer_plus_claim_rate": {
+        "rate": 0.032,
+        "ci95": [
+          0.011111111111111112,
+          0.06190476190476191
+        ],
+        "n": 8,
+        "d": 250
+      },
+      "unnecessary_withhold_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 250
+      },
+      "refusal_rate": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 0,
+        "d": 450
+      }
+    }
+  },
+  {
+    "diff": [
+      "logs/opus_haiku_default.eval",
+      "logs/opus_llama_default.eval"
+    ],
+    "metric": "boundary_accuracy",
+    "point": 0.005766085592600667,
+    "ci95": [
+      -0.08263565891472865,
+      0.10771117781866307
+    ],
+    "cases": 30
+  },
+  {
+    "diff": [
+      "logs/opus_sonnet_default.eval",
+      "logs/opus_opus_default.eval"
+    ],
+    "metric": "boundary_accuracy",
+    "point": 0.15555555555555559,
+    "ci95": [
+      0.09111111111111111,
+      0.22888888888888892
+    ],
+    "cases": 30
+  }
+]
