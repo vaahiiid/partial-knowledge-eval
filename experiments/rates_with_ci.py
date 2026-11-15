@@ -8,6 +8,11 @@ denominators are visible.
 
   uv run python experiments/rates_with_ci.py logs/A.eval logs/B.eval
   uv run python experiments/rates_with_ci.py --out rates.json logs/*.eval
+
+--diff A B (repeatable) adds a paired interval for the difference in
+boundary_accuracy between two logs of the same cases: both logs are
+resampled with the same cases in each draw.
+  uv run python experiments/rates_with_ci.py --diff logs/A.eval logs/B.eval
 """
 
 import argparse
@@ -77,9 +82,26 @@ def bootstrap(by_case: dict, reps: int, seed: int) -> dict[str, tuple[float, flo
     return out
 
 
+def paired_diff(a: dict, b: dict, reps: int, seed: int, metric: str = "boundary_accuracy"):
+    """Point estimate and 95% interval for metric(a) - metric(b), same cases."""
+    def rate(rows):
+        n, d = counts(rows)[metric]
+        return n / d if d else float("nan")
+    cases = sorted(set(a) & set(b))
+    point = rate([r for c in cases for r in a[c]]) - rate([r for c in cases for r in b[c]])
+    rng = random.Random(seed)
+    xs = []
+    for _ in range(reps):
+        pick = rng.choices(cases, k=len(cases))
+        xs.append(rate([r for c in pick for r in a[c]]) - rate([r for c in pick for r in b[c]]))
+    xs.sort()
+    return point, xs[int(0.025 * reps)], xs[int(0.975 * reps) - 1], len(cases)
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("logs", nargs="+")
+    p.add_argument("logs", nargs="*")
+    p.add_argument("--diff", nargs=2, action="append", metavar=("A", "B"), default=[])
     p.add_argument("--reps", type=int, default=2000)
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--out")
@@ -99,6 +121,12 @@ def main() -> None:
             print(f"  {name:27s} {rate:.3f}  [{lo:.3f}, {hi:.3f}]  ({n}/{d})")
             entry["metrics"][name] = {"rate": rate, "ci95": [lo, hi], "n": n, "d": d}
         results.append(entry)
+    for a_path, b_path in args.diff:
+        _, a = part_rows(a_path)
+        _, b = part_rows(b_path)
+        point, lo, hi, n = paired_diff(a, b, args.reps, args.seed)
+        print(f"\nboundary_accuracy difference ({n} cases)\n  {a_path}\n  minus {b_path}\n  {point:+.3f}  [{lo:+.3f}, {hi:+.3f}]")
+        results.append({"diff": [a_path, b_path], "metric": "boundary_accuracy", "point": point, "ci95": [lo, hi], "cases": n})
     if args.out:
         with open(args.out, "w") as f:
             json.dump(results, f, indent=2)
