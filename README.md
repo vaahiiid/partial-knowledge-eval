@@ -304,11 +304,23 @@ of scores are kept.
   the judges is larger on Haiku's answers (0.25 to 0.56 by default) than
   on Llama's (0.26 to 0.41). The two models write differently, so this
   cannot be separated from other differences with this data.
-- **The choice of judge changes the ranking.** With the Haiku judge,
-  claude-haiku-4-5 scores higher than llama3.1:8b on the default runs
-  (0.54 against 0.44). With the Sonnet judge the order reverses (0.30
-  against 0.32). A comparison between models made with one judge should
-  not be read as settled.
+- **The choice of judge decides whether the models differ.** On the
+  default runs, with the Haiku judge, claude-haiku-4-5 scores higher in
+  `boundary_accuracy` by 0.10 (paired bootstrap over the 30 cases, 95%
+  interval +0.01 to +0.19). With the Sonnet judge the difference is
+  -0.02 (-0.11 to +0.08): the two models cannot be told apart. The first
+  interval only just excludes zero, so this is fragile, but a comparison
+  between models made with one judge should not be read as settled.
+
+**Intervals (15 November).** `experiments/rates_with_ci.py` gives every
+rate with a 95% interval from a bootstrap that resamples the 30 cases,
+keeping each case's five samples together, and a paired interval for
+the difference between two runs on the same cases (`--diff A B`). The
+intervals are wide: for example, claude-haiku-4-5's default
+`unsupported_claim_rate` is 0.71 (0.55 to 0.86). Differences between
+the default and grounded runs are far outside them; differences between
+the two models mostly are not. Figures for all eight runs are in
+`experiments/rates_9nov.json`.
 
 **Which judge is closer to a person?** On the thirty hand-labelled parts
 from the grounded runs (`human_labels_v3.json`), the author agreed with
