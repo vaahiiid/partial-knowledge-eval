@@ -460,6 +460,51 @@ by the Sonnet judge (default) and again by the Opus judge. Figures with
   three strongest models still far above their grounded runs (0.00 to
   0.04).
 
+### Five new scenarios outside immigration and education (19 November)
+
+To check that the results are not specific to the first five scenarios,
+the same five models were run on the five scenarios added on 15
+November (renting, consumer purchases, employment, driving, personal
+data), with all three instructions, five samples per case, scored by
+the Sonnet judge. Figures with 95% intervals are in
+`experiments/rates_19nov_new.json`.
+
+`unsupported_claim_rate` (new scenarios):
+
+| Model | default | soft | grounded |
+|---|---|---|---|
+| claude-haiku-4-5 | 0.85 | 0.11 | 0.01 |
+| llama3.1:8b | 0.92 | 0.82 | 0.08 |
+| claude-sonnet-5-5 | 0.98 | 0.31 | 0.00 |
+| claude-opus-5-5 | 0.98 | 0.88 | 0.02 |
+| claude-fable-5-2 | 0.96 | 0.54 | 0.01 |
+
+`answer_plus_claim_rate` (new scenarios):
+
+| Model | default | soft | grounded |
+|---|---|---|---|
+| claude-haiku-4-5 | 0.44 | 0.18 | 0.09 |
+| llama3.1:8b | 0.35 | 0.18 | 0.11 |
+| claude-sonnet-5-5 | 0.33 | 0.07 | 0.02 |
+| claude-opus-5-5 | 0.65 | 0.26 | 0.03 |
+| claude-fable-5-2 | 0.25 | 0.10 | 0.04 |
+
+- **The default and grounded results replicate.** Without an
+  instruction every model fills 0.85 to 0.98 of the gaps in the new
+  domains, close to the first five scenarios; with the grounded
+  instruction every model is at 0.08 or below.
+- **The soft instruction is unreliable, and how much it helps depends on
+  the model and the domain.** claude-haiku-4-5 drops to 0.11 here
+  (0.45 on the first five scenarios), while claude-opus-5-5 stays at
+  0.88 (0.96 before). The grounded instruction works for every model in
+  both sets.
+- **claude-opus-5-5 again adds the most claims to covered parts without
+  an instruction.** Added claims are lower overall in the new scenarios
+  than in the first five (for claude-sonnet-5-5, 0.33 against 0.53), so
+  the size of that failure depends on the material.
+
+These runs use only the Sonnet judge.
+
 ### Previous rubric (28 October)
 
 On 28 October the rubric gained `ANSWER_PLUS_CLAIM` and the hedge rule
