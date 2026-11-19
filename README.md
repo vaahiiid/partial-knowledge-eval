@@ -466,28 +466,30 @@ To check that the results are not specific to the first five scenarios,
 the same five models were run on the five scenarios added on 15
 November (renting, consumer purchases, employment, driving, personal
 data), with all three instructions, five samples per case, scored by
-the Sonnet judge. Figures with 95% intervals are in
-`experiments/rates_19nov_new.json`.
+the Sonnet judge. The default and grounded runs were scored again by
+the Opus judge (in brackets). Figures with 95% intervals are in
+`experiments/rates_19nov_new.json` and
+`experiments/rates_19nov_new_opus.json`.
 
 `unsupported_claim_rate` (new scenarios):
 
 | Model | default | soft | grounded |
 |---|---|---|---|
-| claude-haiku-4-5 | 0.85 | 0.11 | 0.01 |
-| llama3.1:8b | 0.92 | 0.82 | 0.08 |
-| claude-sonnet-5-5 | 0.98 | 0.31 | 0.00 |
-| claude-opus-5-5 | 0.98 | 0.88 | 0.02 |
-| claude-fable-5-2 | 0.96 | 0.54 | 0.01 |
+| claude-haiku-4-5 | 0.85 (0.88) | 0.11 | 0.01 (0.01) |
+| llama3.1:8b | 0.92 (0.92) | 0.82 | 0.08 (0.09) |
+| claude-sonnet-5-5 | 0.98 (0.98) | 0.31 | 0.00 (0.01) |
+| claude-opus-5-5 | 0.98 (0.98) | 0.88 | 0.02 (0.02) |
+| claude-fable-5-2 | 0.96 (0.96) | 0.54 | 0.01 (0.00) |
 
 `answer_plus_claim_rate` (new scenarios):
 
 | Model | default | soft | grounded |
 |---|---|---|---|
-| claude-haiku-4-5 | 0.44 | 0.18 | 0.09 |
-| llama3.1:8b | 0.35 | 0.18 | 0.11 |
-| claude-sonnet-5-5 | 0.33 | 0.07 | 0.02 |
-| claude-opus-5-5 | 0.65 | 0.26 | 0.03 |
-| claude-fable-5-2 | 0.25 | 0.10 | 0.04 |
+| claude-haiku-4-5 | 0.44 (0.49) | 0.18 | 0.09 (0.14) |
+| llama3.1:8b | 0.35 (0.44) | 0.18 | 0.11 (0.25) |
+| claude-sonnet-5-5 | 0.33 (0.35) | 0.07 | 0.02 (0.01) |
+| claude-opus-5-5 | 0.65 (0.67) | 0.26 | 0.03 (0.06) |
+| claude-fable-5-2 | 0.25 (0.27) | 0.10 | 0.04 (0.01) |
 
 - **The default and grounded results replicate.** Without an
   instruction every model fills 0.85 to 0.98 of the gaps in the new
@@ -503,7 +505,13 @@ the Sonnet judge. Figures with 95% intervals are in
   than in the first five (for claude-sonnet-5-5, 0.33 against 0.53), so
   the size of that failure depends on the material.
 
-These runs use only the Sonnet judge.
+- **The two judges agree on gap-filling almost exactly.** On added
+  claims the Opus judge is stricter for the smaller models (for
+  llama3.1:8b grounded, 0.25 against 0.11), so the gap between the
+  smaller and stronger models under the grounded instruction is, if
+  anything, larger under the Opus judge.
+
+The soft-instruction runs were scored by the Sonnet judge only.
 
 ### Previous rubric (28 October)
 
