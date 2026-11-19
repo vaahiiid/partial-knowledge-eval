@@ -35,3 +35,8 @@ def test_scenario_filter():
 def test_unknown_scenario_rejected():
     with pytest.raises(ValueError):
         load_dataset("no_such_scenario")
+
+
+def test_scenario_filter_accepts_list():
+    # The inspect CLI passes `-T scenarios=a,b` as a list.
+    assert len(load_dataset(["holiday_pay", "rental_deposit"])) == 12

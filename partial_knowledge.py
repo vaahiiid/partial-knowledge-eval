@@ -406,11 +406,16 @@ def repeated(dataset, repeats: int) -> MemoryDataset:
     return MemoryDataset(samples)
 
 
-def load_dataset(scenarios: str | None = None):
-    """The dataset, optionally limited to comma-separated scenario names."""
+def load_dataset(scenarios: str | list[str] | None = None):
+    """The dataset, optionally limited to the named scenarios.
+
+    Accepts a comma-separated string or a list: the inspect CLI turns
+    `-T scenarios=a,b` into a list.
+    """
     dataset = json_dataset(str(DATASET_PATH), record_to_sample)
     if scenarios:
-        wanted = {name.strip() for name in scenarios.split(",") if name.strip()}
+        names = scenarios.split(",") if isinstance(scenarios, str) else scenarios
+        wanted = {str(name).strip() for name in names if str(name).strip()}
         known = {s.metadata["scenario"] for s in dataset}
         unknown = wanted - known
         if unknown:
@@ -424,7 +429,7 @@ def partial_knowledge(
     judge: str | None = "anthropic/claude-sonnet-5-5",
     repeats: int = 1,
     instruction: str = "default",
-    scenarios: str | None = None,
+    scenarios: str | list[str] | None = None,
 ) -> Task:
     """Partial-knowledge disclosure evaluation.
 
