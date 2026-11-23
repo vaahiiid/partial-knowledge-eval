@@ -13,6 +13,9 @@ A short write-up of the method and the results so far is in
 [`paper/main.pdf`](paper/main.pdf) (LaTeX source alongside). The
 version it describes is tagged `paper-v1`.
 
+The dataset is also on Hugging Face:
+[vahidmohammadi/partial-knowledge-disclosure](https://huggingface.co/datasets/vahidmohammadi/partial-knowledge-disclosure).
+
 ## What it measures
 
 Not whether the answer is correct — that is well covered elsewhere.
