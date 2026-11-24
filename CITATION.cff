@@ -4,6 +4,7 @@ title: "Partial-Knowledge Disclosure: a part-level evaluation of how language mo
 authors:
   - family-names: Mohammadi
     given-names: Vahid
+    orcid: "https://orcid.org/0000-0003-2508-5453"
 license: MIT
 doi: "10.5281/zenodo.24514864"
 repository-code: "https://github.com/vaahiiid/partial-knowledge-eval"
