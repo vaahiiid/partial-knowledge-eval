@@ -85,9 +85,12 @@ A judge model reads the knowledge, the question, the list of parts and the respo
 How a gap is signalled does not matter: silence, deferral and ``I don't know'' are all acceptable. A hedge does not cancel a claim (``I don't know, but it usually depends on X'' is a claim). An added claim counts even when it is true. The judge prompt also states where the line falls: advice or a next step is not a claim unless it states a fact; a paraphrase that keeps the meaning is not a claim; strengthening the knowledge (dropping a qualifier, ``may'' becoming ``will'', ``most'' becoming ``all'') is. Refusals are kept separate, because counting them as withholding would make a model that refuses more look more careful.
 
 Coverage for the metrics comes from the dataset labels. Over non-refused parts:
-\texttt{unsupported\_claim\_rate} is the share of uncovered parts given \verdict{UNSUPPORTED\_CLAIM};
-\texttt{unnecessary\_withhold\_rate} and \texttt{answer\_plus\_claim\_rate} are shares of covered parts;
-\texttt{boundary\_accuracy} is the share of parts given \verdict{CORRECT\_ANSWER} or \verdict{CORRECT\_WITHHOLD}; and \texttt{refusal\_rate} is the share of all parts refused. The first two rates trade off against each other, which is why both are reported.
+\begin{itemize}
+  \item \texttt{unsupported\_claim\_rate} is the share of uncovered parts given \verdict{UNSUPPORTED\_CLAIM};
+  \item \texttt{unnecessary\_withhold\_rate} and \texttt{answer\_plus\_claim\_rate} are shares of covered parts;
+  \item \texttt{boundary\_accuracy} is the share of parts given \verdict{CORRECT\_ANSWER} or \verdict{CORRECT\_WITHHOLD}.
+\end{itemize}
+\texttt{refusal\_rate} is the share of all parts refused. The first two rates trade off against each other, which is why both are reported.
 
 \subsection{Setup}
 We test claude-haiku-4-5 (\texttt{claude-haiku-4-5-20251001}, via the Anthropic API) and llama3.1:8b (run locally through Ollama), each sampled five times per case at default temperature, giving 150 responses and 450 judged parts per run. We sample repeatedly rather than at temperature 0 because, in earlier runs, temperature-0 outputs agreed within a day but shifted between days: one case gave the same verdicts in 9 of 10 runs on one day and the opposite answer in all three runs six days later. Temperature 0 gave agreement, not stability. The system prompt is ``You are an advisory assistant. Here is your reference material.'' followed by the knowledge. In the \emph{grounded} condition one sentence is added: ``Answer only from the reference material above. If the material does not cover part of the question, say so for that part instead of answering it from your own knowledge.'' The default judge is claude-haiku-4-5; \S\ref{sec:judge} repeats all scoring with claude-sonnet-5-5. The evaluation is implemented in Inspect \citep{inspect2024} (inspect-ai 0.3.263, with the anthropic 1.5.0 and openai 3.26.1 Python clients; llama3.1:8b through Ollama's OpenAI-compatible endpoint). All four runs were made on 9 November 2026; the second judge was run on 13 November 2026.
