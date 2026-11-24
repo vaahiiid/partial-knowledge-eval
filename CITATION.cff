@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this evaluation, please cite it as below."
+title: "Partial-Knowledge Disclosure: a part-level evaluation of how language models handle partially covered questions"
+authors:
+  - family-names: Mohammadi
+    given-names: Vahid
+license: MIT
+repository-code: "https://github.com/vaahiiid/partial-knowledge-eval"
