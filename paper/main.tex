@@ -41,7 +41,7 @@ We do not claim to be the first to study insufficient context, abstention, or ex
 
 \section{Related work}\label{sec:related}
 
-\paragraph{Insufficient context in RAG.} \citet{joren2025sufficient} define whether a question--context pair is sufficient to answer and find that models often answer rather than abstain when it is not; their labels are binary. RGB \citep{chen2024rgb} tests ``negative rejection'' when retrieved passages contain no answer. FaithEval \citep{ming2024faitheval} tests faithfulness under unanswerable, inconsistent and counterfactual contexts. The Evidence Sufficiency Benchmark \citep{zhang2026esb} grades evidence in five levels, including partial support where an answer is still inferable, and reports that models over-answer under conflicting evidence. \citet{setiawan2026promptabstention} compares prompting policies on small frozen models, including llama-3.1-8B, and find that an explicit instruction to abstain works well when evidence is missing but not when it is misleading. Our grounded-instruction result (\S\ref{sec:results}) is in line with theirs. All of these score one answer per question.
+\paragraph{Insufficient context in RAG.} \citet{joren2025sufficient} define whether a question--context pair is sufficient to answer and find that models often answer rather than abstain when it is not; their labels are binary. RGB \citep{chen2024rgb} tests ``negative rejection'' when retrieved passages contain no answer. FaithEval \citep{ming2024faitheval} tests faithfulness under unanswerable, inconsistent and counterfactual contexts. The Evidence Sufficiency Benchmark \citep{zhang2026esb} grades evidence in five levels, including partial support where an answer is still inferable, and reports that models over-answer under conflicting evidence. \citet{setiawan2026promptabstention} compares prompting policies on small frozen models, including llama-3.1-8B, and finds that an explicit instruction to abstain works well when evidence is missing but not when it is misleading. Our grounded-instruction result (\S\ref{sec:results}) is in line with theirs. All of these score one answer per question.
 
 \paragraph{Abstention.} \citet{wen2024knowyourlimits} survey abstention in language models; AbstentionBench \citep{kirichenko2025abstentionbench} evaluates it across many datasets. Our setting differs in that abstention is required for some parts of a question and wrong for others.
 
@@ -106,7 +106,7 @@ Metric & default & grounded & default & grounded \\
 \midrule
 \texttt{boundary\_accuracy} & .54 {\scriptsize[.42,.66]} & .99 {\scriptsize[.97,1.0]} & .44 {\scriptsize[.34,.54]} & .87 {\scriptsize[.82,.92]} \\
 \texttt{unsupported\_claim} & .71 {\scriptsize[.55,.86]} & .00 {\scriptsize[.00,.00]} & .90 {\scriptsize[.86,.94]} & .06 {\scriptsize[.02,.12]} \\
-\texttt{answer\_plus\_claim} & .25 {\scriptsize[.16,.35]} & .02 {\scriptsize[.00,.05]} & .26 {\scriptsize[.18,.35]} & .08 {\scriptsize[.04,.12]} \\
+\texttt{answer\_plus\_claim} & .25 {\scriptsize[.15,.35]} & .02 {\scriptsize[.00,.05]} & .26 {\scriptsize[.18,.35]} & .08 {\scriptsize[.04,.12]} \\
 \texttt{unnecessary\_withhold} & .00 {\scriptsize[.00,.00]} & .00 {\scriptsize[.00,.00]} & .01 {\scriptsize[.00,.02]} & .07 {\scriptsize[.03,.12]} \\
 \texttt{refusal} & .01 {\scriptsize[.00,.04]} & .00 {\scriptsize[.00,.00]} & .12 {\scriptsize[.03,.23]} & .02 {\scriptsize[.00,.04]} \\
 \bottomrule
