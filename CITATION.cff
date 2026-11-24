@@ -5,4 +5,5 @@ authors:
   - family-names: Mohammadi
     given-names: Vahid
 license: MIT
+doi: "10.5281/zenodo.24514864"
 repository-code: "https://github.com/vaahiiid/partial-knowledge-eval"

@@ -16,6 +16,8 @@ version it describes is tagged `paper-v1`.
 The dataset is also on Hugging Face:
 [vahidmohammadi/partial-knowledge-disclosure](https://huggingface.co/datasets/vahidmohammadi/partial-knowledge-disclosure).
 
+Archived on Zenodo (all versions): [doi:10.5281/zenodo.24514864](https://doi.org/10.5281/zenodo.24514864).
+
 ## What it measures
 
 Not whether the answer is correct — that is well covered elsewhere.
