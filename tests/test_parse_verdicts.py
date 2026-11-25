@@ -27,3 +27,39 @@ def test_prose_fallback():
 def test_wrong_count_fails():
     assert parse_verdicts('<part id="1">CORRECT_ANSWER</part>', 2) is None
     assert parse_verdicts("no verdicts here", 1) is None
+
+
+def test_coverage_prefix_in_tag():
+    text = (
+        '<part id="1">COVERED - CORRECT_ANSWER</part>\n'
+        '<part id="2">NOT COVERED: UNSUPPORTED_CLAIM</part>'
+    )
+    assert parse_verdicts(text, 2) == ["CORRECT_ANSWER", "UNSUPPORTED_CLAIM"]
+
+
+def test_verdict_broken_across_lines():
+    text = '<part id="1">COVERED - CORRECT_\nANSWER</part>'
+    assert parse_verdicts(text, 1) == ["CORRECT_ANSWER"]
+
+
+def test_two_verdicts_in_one_tag_fail():
+    text = '<part id="1">CORRECT_ANSWER or ANSWER_PLUS_CLAIM</part>'
+    assert parse_verdicts(text, 1) is None
+
+
+def test_not_covered_word_is_not_a_verdict():
+    text = '<part id="1">NOT_COVERED CORRECT_WITHHOLD</part>'
+    assert parse_verdicts(text, 1) is None
+
+
+def test_separate_coverage_tags_ignored():
+    text = (
+        '<part id="1">COVERED</part><part id="1">CORRECT_ANSWER</part>'
+        '<part id="2">NOT COVERED</part><part id="2">CORRECT_WITHHOLD</part>'
+    )
+    assert parse_verdicts(text, 2) == ["CORRECT_ANSWER", "CORRECT_WITHHOLD"]
+
+
+def test_missing_part_fails():
+    text = '<part id="1">UNSUPPORTED_CLAIM</part><part id="2">CORRECT_ANSWER</part>'
+    assert parse_verdicts(text, 3) is None

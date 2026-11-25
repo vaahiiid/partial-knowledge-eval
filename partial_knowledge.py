@@ -140,7 +140,8 @@ VALID_VERDICTS = {
     "REFUSAL",
 }
 
-PART_PATTERN = re.compile(r'<part\s+id="(\d+)"\s*>\s*([A-Z_]+)\s*</part>')
+PART_PATTERN = re.compile(r'<part\s+id="(\d+)"\s*>(.*?)</part>', re.DOTALL)
+VERDICT_TOKEN = re.compile(r"[A-Z]+(?:_[A-Z]+)+")
 
 # Fallback: judges sometimes write "Verdict: CORRECT_ANSWER" in prose
 # instead of using the tags. Measured at roughly 40% of runs with
@@ -167,17 +168,39 @@ def record_to_sample(record: dict[str, Any]) -> Sample:
     )
 
 
+def _verdict_in_tag(content: str) -> str | None:
+    """The verdict inside one <part> tag, or None.
+
+    Most judges write the bare verdict. Some (gemini-3.5-flash-lite)
+    prefix the coverage ("COVERED - CORRECT_ANSWER") or break a verdict
+    across a line ("CORRECT_\nANSWER"). Whitespace next to an underscore
+    is removed, then the tag must name exactly one valid verdict and no
+    other underscored word.
+    """
+    text = re.sub(r"\s*_\s*", "_", content.strip().upper())
+    found = [t for t in re.findall(r"[A-Z_]+", text) if t in VALID_VERDICTS]
+    other = [t for t in VERDICT_TOKEN.findall(text) if t not in VALID_VERDICTS]
+    if len(found) != 1 or other:
+        return None
+    return found[0]
+
+
 def parse_verdicts(text: str, expected_count: int) -> list[str] | None:
     """Extract per-part verdicts. Returns None if parsing fails."""
     matches = PART_PATTERN.findall(text)
 
-    if len(matches) == expected_count:
-        verdicts: list[str] = []
-        for _part_id, verdict in sorted(matches, key=lambda m: int(m[0])):
-            if verdict not in VALID_VERDICTS:
-                return None
-            verdicts.append(verdict)
-        return verdicts
+    # One verdict per part id. A tag without a verdict (some judges add
+    # a separate <part id="1">COVERED</part>) is ignored; a part with no
+    # verdict, or with two, fails.
+    by_id: dict[int, list[str]] = {}
+    for part_id, content in matches:
+        verdict = _verdict_in_tag(content)
+        if verdict is not None:
+            by_id.setdefault(int(part_id), []).append(verdict)
+    if sorted(by_id) == list(range(1, expected_count + 1)) and all(
+        len(v) == 1 for v in by_id.values()
+    ):
+        return [by_id[i][0] for i in range(1, expected_count + 1)]
 
     # Tags missing or malformed - try the prose fallback
     found = VERDICT_FALLBACK.findall(text)
@@ -373,7 +396,7 @@ def boundary_scorer(judge: str | Model | None = None) -> Scorer:
         if verdicts is None:
             return Score(
                 value=0.0,
-                explanation="Judge output could not be parsed.",
+                explanation="Judge output could not be parsed.\n\n" + result.completion,
                 metadata={"verdicts": [], "expected": expected},
             )
 
