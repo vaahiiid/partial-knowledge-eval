@@ -3,11 +3,30 @@
   "upload_type": "software",
   "description": "<p>An open evaluation, built on Inspect AI, of how language models behave when the reference material they are given covers only some parts of a multi-part question. Each part is scored separately, with a separate verdict for parts answered correctly from the material but with an added unsupported claim.</p><p>Includes the 60-case dataset, the evaluation code and judge prompt, hand labels, and per-run results with 95% bootstrap intervals.</p>",
   "creators": [
-    {"name": "Mohammadi, Vahid", "orcid": "0000-0003-2508-5453"}
+    {
+      "name": "Mohammadi, Vahid",
+      "orcid": "0000-0003-2508-5453"
+    }
   ],
   "license": "MIT",
-  "keywords": ["evaluation", "large language models", "retrieval-augmented generation", "abstention", "grounding", "LLM-as-a-judge"],
+  "keywords": [
+    "evaluation",
+    "large language models",
+    "retrieval-augmented generation",
+    "abstention",
+    "grounding",
+    "LLM-as-a-judge"
+  ],
   "related_identifiers": [
-    {"identifier": "https://huggingface.co/datasets/vahidmohammadi/partial-knowledge-disclosure", "relation": "isSupplementedBy", "resource_type": "dataset"}
+    {
+      "identifier": "https://huggingface.co/datasets/vahidmohammadi/partial-knowledge-disclosure",
+      "relation": "isSupplementedBy",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "arXiv:2611.33428",
+      "relation": "isDescribedBy",
+      "resource_type": "publication-preprint"
+    }
   ]
 }

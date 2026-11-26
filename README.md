@@ -9,9 +9,9 @@ Someone asks three things at once, and a retrieval system returns
 material covering one of them. What the system does with the other two
 is the thing this eval measures.
 
-A short write-up of the method and the results so far is in
-[`paper/main.pdf`](paper/main.pdf) (LaTeX source alongside). The
-version it describes is tagged `paper-v1`.
+A short write-up of the method and the results so far is on arXiv:
+[arXiv:2611.33428](https://arxiv.org/abs/2611.33428). The same paper is
+in [`paper/main.pdf`](paper/main.pdf), with the LaTeX source alongside.
 
 The dataset is also on Hugging Face:
 [vahidmohammadi/partial-knowledge-disclosure](https://huggingface.co/datasets/vahidmohammadi/partial-knowledge-disclosure).
